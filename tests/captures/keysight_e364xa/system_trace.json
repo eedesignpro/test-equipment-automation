@@ -1,0 +1,42 @@
+[
+  {
+    "op": "query",
+    "cmd": "SYST:VERS?",
+    "resp": "1997.0"
+  },
+  {
+    "op": "query",
+    "cmd": "DISP?",
+    "resp": "1"
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:MODE?",
+    "resp": "VI"
+  },
+  {
+    "op": "write",
+    "cmd": "DISP:TEXT \"BENCH\"",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:TEXT?",
+    "resp": "\"BENCH\""
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:TEXT?",
+    "resp": "\"BENCH\""
+  },
+  {
+    "op": "write",
+    "cmd": "DISP:TEXT:CLE",
+    "resp": null
+  },
+  {
+    "op": "write",
+    "cmd": "SYST:BEEP",
+    "resp": null
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "op": "query",
+    "cmd": "OUTP?",
+    "resp": "0"
+  },
+  {
+    "op": "write",
+    "cmd": "INST:NSEL 1",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:RANG?",
+    "resp": "P8V"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT?",
+    "resp": "+2.20000000E+01"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT:STAT?",
+    "resp": "1"
+  },
+  {
+    "op": "write",
+    "cmd": "INST:NSEL 2",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:RANG?",
+    "resp": "P8V"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT?",
+    "resp": "+2.20000000E+01"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT:STAT?",
+    "resp": "1"
+  }
+]

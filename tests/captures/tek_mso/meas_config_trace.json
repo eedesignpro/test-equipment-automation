@@ -1,0 +1,972 @@
+[
+ {
+  "op": "write",
+  "cmd": "MEASUrement:DELETEALL"
+ },
+ {
+  "op": "note",
+  "step": "delete_all",
+  "result": "None"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:ADDNew \"MEAS1\""
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:TYPe RISETIME"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2469\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2469\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2469\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2475\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+  "resp": "293.6471736952729E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "rise_time_default",
+  "result": "2.936471736952729e-07"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:METHod PERCent"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:METHod?",
+  "resp": "PERCENT\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.method",
+  "result": "'PERCENT'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:TYPE GLOBal"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:TYPE?",
+  "resp": "GLOBAL\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.source_type",
+  "result": "'GLOBAL'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE TENNinety"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE?",
+  "resp": "TENNINETY\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.10-90",
+  "result": "'TENNINETY'"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "MEAS1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:TYPe?",
+  "resp": "RISETIME\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:TYPe RISETIME"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2475\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2475\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2475\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2475\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2490\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+  "resp": "291.5288733051945E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "rise_time_1090",
+  "result": "2.915288733051945e-07"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE TWENtyeighty"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE?",
+  "resp": "TWENTYEIGHTY\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.20-80",
+  "result": "'TWENTYEIGHTY'"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "MEAS1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:TYPe?",
+  "resp": "RISETIME\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:TYPe RISETIME"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2490\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2490\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2490\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2490\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2505\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+  "resp": "203.5673931889084E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "rise_time_2080",
+  "result": "2.035673931889084e-07"
+ },
+ {
+  "op": "note",
+  "step": "risetime_compare",
+  "rt_1090": 2.915288733051945e-07,
+  "rt_2080": 2.035673931889084e-07
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEHigh 85"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEMid 50"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISELow 15"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLHigh 85"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLMid 50"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLLow 15"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEHigh?",
+  "resp": "85.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISELow?",
+  "resp": "15.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLHigh?",
+  "resp": "85.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLLow?",
+  "resp": "15.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.custom_percent",
+  "result": "{'rise_high': 85.0, 'rise_mid': 50.0, 'rise_low': 15.0, 'fall_high': 85.0, 'fall_mid': 50.0, 'fall_low': 15.0}"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEHigh?",
+  "resp": "85.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISEMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:RISELow?",
+  "resp": "15.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLHigh?",
+  "resp": "85.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:FALLLow?",
+  "resp": "15.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.get_percent",
+  "result": "{'rise_high': 85.0, 'rise_mid': 50.0, 'rise_low': 15.0, 'fall_high': 85.0, 'fall_mid': 50.0, 'fall_low': 15.0}"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEHigh 0.8"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEMid 0"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISELow -0.8"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEHigh?",
+  "resp": "800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEMid?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISELow?",
+  "resp": "-800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLHigh?",
+  "resp": "800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLMid?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLLow?",
+  "resp": "-800.0000E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.abs",
+  "result": "{'rise_high': 0.8, 'rise_mid': 0.0, 'rise_low': -0.8, 'fall_high': 0.8, 'fall_mid': 0.0, 'fall_low': -0.8}"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEHigh?",
+  "resp": "800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISEMid?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:RISELow?",
+  "resp": "-800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLHigh?",
+  "resp": "800.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLMid?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:FALLLow?",
+  "resp": "-800.0000E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.get_abs",
+  "result": "{'rise_high': 0.8, 'rise_mid': 0.0, 'rise_low': -0.8, 'fall_high': 0.8, 'fall_mid': 0.0, 'fall_low': -0.8}"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:HYSTeresis 5"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:HYSTeresis?",
+  "resp": "5.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.hyst",
+  "result": "5.0"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:BASETop AUTO"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:BASETop?",
+  "resp": "AUTO\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.basetop",
+  "result": "'AUTO'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:ABSolute:TYPE SAME"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:ABSolute:TYPE?",
+  "resp": "SAME\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.abs_type",
+  "result": "'SAME'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE TENNinety"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:REFLevels:PERCent:TYPE?",
+  "resp": "TENNINETY\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels.reset_1090",
+  "result": "'TENNINETY'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:CH5:REFLevels:METHod PERCent"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:METHod?",
+  "resp": "PERCENT\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels_ch5.method",
+  "result": "'PERCENT'"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:RISEHigh?",
+  "resp": "90.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:RISEMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:RISELow?",
+  "resp": "10.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:FALLHigh?",
+  "resp": "90.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:FALLMid?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:CH5:REFLevels:PERCent:FALLLow?",
+  "resp": "10.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels_ch5.get",
+  "result": "{'rise_high': 90.0, 'rise_mid': 50.0, 'rise_low': 10.0, 'fall_high': 90.0, 'fall_mid': 50.0, 'fall_low': 10.0}"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:REFLevels1:METHod?",
+  "resp": "PERCENT\n"
+ },
+ {
+  "op": "note",
+  "step": "reflevels_meas1.get_method",
+  "result": "'PERCENT'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing TIMe"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing?",
+  "resp": "TIME\n"
+ },
+ {
+  "op": "note",
+  "step": "gating.mode_time",
+  "result": "'TIME'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing:STARTtime -2e-06"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing:ENDtime 2e-06"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing:STARTtime?",
+  "resp": "-2.0E-6\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing:ENDtime?",
+  "resp": "2.0E-6\n"
+ },
+ {
+  "op": "note",
+  "step": "gating.window",
+  "result": "(-2e-06, 2e-06)"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing:ACTive HIGH"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing:ACTive?",
+  "resp": "HIGH\n"
+ },
+ {
+  "op": "note",
+  "step": "gating.active",
+  "result": "'HIGH'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing:MIDRef 0"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing:MIDRef?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "gating.midref",
+  "result": "0.0"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "MEAS1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:TYPe?",
+  "resp": "RISETIME\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:DELete \"MEAS1\""
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:ADDNew \"MEAS1\""
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:TYPe FREQUENCY"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2513\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2513\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "4\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2513\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2519\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+  "resp": "1.0003713276753E+6\n"
+ },
+ {
+  "op": "note",
+  "step": "freq_gated",
+  "result": "1000371.3276753"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:GATing NONE"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:GATing?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "gating.none",
+  "result": "'NONE'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:GATing:GLOBal ON"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:GATing:GLOBal?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "gating_meas1.global",
+  "result": "True"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:GATing:GLOBal?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "gating_meas1.get_global",
+  "result": "True"
+ },
+ {
+  "op": "note",
+  "step": "gated_freq",
+  "value": 1000371.3276753
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "MEAS1\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:ADDNew \"MEAS2\""
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS2:TYPe AMPLITUDE"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS2:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2519\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2519\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "2526\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:MEAN?",
+  "resp": "979.3593593593592E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "amp_slot2",
+  "result": "0.9793593593593592"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:MAXimum?",
+  "resp": "979.3593593593592E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "curr_max",
+  "result": "0.9793593593593592"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:MINimum?",
+  "resp": "979.3593593593592E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "curr_min",
+  "result": "0.9793593593593592"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:PK2PK?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "curr_pk2pk",
+  "result": "0.0"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:STDDev?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "curr_std",
+  "result": "0.0"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:RESUlts:ALLAcqs:PK2PK?",
+  "resp": "100.1001001001978E-6\n"
+ },
+ {
+  "op": "note",
+  "step": "allacqs_pk2pk",
+  "result": "0.0001001001001001978"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS2:LABel \"amp5\""
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:LABel?",
+  "resp": "\"amp5\"\n"
+ },
+ {
+  "op": "note",
+  "step": "set_label",
+  "result": "'amp5'"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:LABel?",
+  "resp": "\"amp5\"\n"
+ },
+ {
+  "op": "note",
+  "step": "get_label",
+  "result": "'amp5'"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:STATUS?",
+  "resp": "FAIL\n"
+ },
+ {
+  "op": "note",
+  "step": "get_status",
+  "result": "'FAIL'"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:XUNIT?",
+  "resp": "\"s\"\n"
+ },
+ {
+  "op": "note",
+  "step": "get_xunit",
+  "result": "'s'"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS2:YUNIT?",
+  "resp": "\"V\"\n"
+ },
+ {
+  "op": "note",
+  "step": "get_yunit",
+  "result": "'V'"
+ },
+ {
+  "op": "esr",
+  "resp": "48"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:DELETEALL"
+ },
+ {
+  "op": "note",
+  "step": "meas.delete_all_final",
+  "result": "None"
+ }
+]

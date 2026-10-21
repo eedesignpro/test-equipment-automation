@@ -1,0 +1,7 @@
+[
+  {
+    "op": "query",
+    "cmd": "VOLT?/CURR? alternating x10 per pace",
+    "resp": "{\"0.05\": {\"ok\": true, \"elapsed_s\": 0.503}, \"0.025\": {\"ok\": true, \"elapsed_s\": 0.496}, \"0.01\": {\"ok\": true, \"elapsed_s\": 0.502}}"
+  }
+]

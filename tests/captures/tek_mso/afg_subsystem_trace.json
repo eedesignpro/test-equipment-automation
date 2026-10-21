@@ -1,0 +1,229 @@
+{
+  "task": "T2",
+  "commands": [
+    {
+      "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+      "label": "connect"
+    },
+    {
+      "ok": true,
+      "result": "SINE",
+      "warnings": [],
+      "label": "function:SINE"
+    },
+    {
+      "ok": true,
+      "result": "SQUARE",
+      "warnings": [],
+      "label": "function:SQUARE"
+    },
+    {
+      "ok": true,
+      "result": "PULSE",
+      "warnings": [],
+      "label": "function:PULSE"
+    },
+    {
+      "ok": true,
+      "result": "RAMP",
+      "warnings": [],
+      "label": "function:RAMP"
+    },
+    {
+      "ok": true,
+      "result": "NOISE",
+      "warnings": [],
+      "label": "function:NOISE"
+    },
+    {
+      "ok": true,
+      "result": "DC",
+      "warnings": [],
+      "label": "function:DC"
+    },
+    {
+      "ok": true,
+      "result": "SINC",
+      "warnings": [],
+      "label": "function:SINC"
+    },
+    {
+      "ok": true,
+      "result": "GAUSSIAN",
+      "warnings": [],
+      "label": "function:GAUSSIAN"
+    },
+    {
+      "ok": true,
+      "result": "LORENTZ",
+      "warnings": [],
+      "label": "function:LORENTZ"
+    },
+    {
+      "ok": true,
+      "result": "ERISE",
+      "warnings": [],
+      "label": "function:ERISE"
+    },
+    {
+      "ok": true,
+      "result": "EDECAY",
+      "warnings": [],
+      "label": "function:EDECAY"
+    },
+    {
+      "ok": true,
+      "result": "HAVERSINE",
+      "warnings": [],
+      "label": "function:HAVERSINE"
+    },
+    {
+      "ok": true,
+      "result": "CARDIAC",
+      "warnings": [],
+      "label": "function:CARDIAC"
+    },
+    {
+      "ok": true,
+      "result": "ARBITRARY",
+      "warnings": [],
+      "label": "function:ARBITRARY"
+    },
+    {
+      "ok": true,
+      "result": 1000000.0,
+      "warnings": [],
+      "label": "frequency"
+    },
+    {
+      "ok": true,
+      "result": 1e-06,
+      "warnings": [],
+      "label": "period"
+    },
+    {
+      "ok": true,
+      "result": 1.0,
+      "warnings": [],
+      "label": "amplitude"
+    },
+    {
+      "ok": true,
+      "result": 0.1,
+      "warnings": [],
+      "label": "offset"
+    },
+    {
+      "ok": true,
+      "result": 0.6,
+      "warnings": [],
+      "label": "high_level"
+    },
+    {
+      "ok": true,
+      "result": -0.6,
+      "warnings": [],
+      "label": "low_level"
+    },
+    {
+      "ok": true,
+      "result": 40.0,
+      "warnings": [],
+      "label": "square_duty"
+    },
+    {
+      "ok": true,
+      "result": 25.0,
+      "warnings": [],
+      "label": "ramp_symmetry"
+    },
+    {
+      "ok": true,
+      "result": 1e-07,
+      "warnings": [],
+      "label": "pulse_width"
+    },
+    {
+      "ok": true,
+      "result": true,
+      "warnings": [],
+      "label": "noise_add_state_on"
+    },
+    {
+      "ok": true,
+      "result": 10.0,
+      "warnings": [],
+      "label": "noise_add_percent"
+    },
+    {
+      "ok": true,
+      "result": false,
+      "warnings": [],
+      "label": "noise_add_state_off"
+    },
+    {
+      "ok": true,
+      "result": "HIGHZ",
+      "warnings": [],
+      "label": "load_impedance_highz"
+    },
+    {
+      "ok": true,
+      "result": "FIFTY",
+      "warnings": [],
+      "label": "load_impedance_fifty"
+    },
+    {
+      "ok": true,
+      "result": true,
+      "warnings": [],
+      "label": "output_state_on"
+    },
+    {
+      "ok": true,
+      "result": "CONTINUOUS",
+      "warnings": [],
+      "label": "output_mode_continuous"
+    },
+    {
+      "ok": true,
+      "result": "BURST",
+      "warnings": [],
+      "label": "output_mode_burst"
+    },
+    {
+      "ok": true,
+      "result": 5,
+      "warnings": [],
+      "label": "burst_count"
+    },
+    {
+      "ok": true,
+      "result": null,
+      "warnings": [],
+      "label": "burst_trigger"
+    },
+    {
+      "ok": true,
+      "result": "OFF",
+      "warnings": [],
+      "label": "output_mode_off"
+    },
+    {
+      "ok": true,
+      "result": "",
+      "warnings": [],
+      "label": "arb_source_query_default"
+    },
+    {
+      "ok": true,
+      "result": "C:/pyvisa_tmp/nope.wfm",
+      "warnings": [],
+      "label": "arb_source_set_missing"
+    },
+    {
+      "output_state": false,
+      "label": "after_preserved_restore"
+    }
+  ]
+}

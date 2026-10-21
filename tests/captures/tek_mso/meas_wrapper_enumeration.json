@@ -1,0 +1,206 @@
+{
+  "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+  "signal": "AFG sine 1 MHz 1 Vpp -> CH5",
+  "results": {
+    "vert.amplitude": {
+      "value": 2.0176789914915,
+      "esr": 0,
+      "events": ""
+    },
+    "vert.maximum": {
+      "value": 1.02046875,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.minimum": {
+      "value": -1.02346875,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.peak_to_peak": {
+      "value": 2.04484375,
+      "esr": 0,
+      "events": ""
+    },
+    "vert.top": {
+      "value": 1.017125,
+      "esr": 0,
+      "events": ""
+    },
+    "vert.base": {
+      "value": -1.0045061936937,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.high": {
+      "value": 1.0181875,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.low": {
+      "value": -1.00832545045,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.mean": {
+      "value": -0.0014244520616492,
+      "esr": 0,
+      "events": ""
+    },
+    "vert.rms": {
+      "value": 0.7142703870484032,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.ac_rms": {
+      "value": 0.7141682872473968,
+      "esr": 0,
+      "events": ""
+    },
+    "vert.area": {
+      "value": -7.333125e-09,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.overshoot_pos": {
+      "value": 0.0,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "vert.overshoot_neg": {
+      "value": 0.609137055837563,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.frequency": {
+      "value": 1000033.84863,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.period": {
+      "value": 9.999551830906045e-07,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.rise_time": {
+      "value": 3.002381094329318e-07,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.fall_time": {
+      "value": 2.940978023834242e-07,
+      "esr": 0,
+      "events": ""
+    },
+    "time.rise_slew_rate": {
+      "value": 0.0054782782952975,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.fall_slew_rate": {
+      "value": -0.00546588021719,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.width_pos": {
+      "value": 5.008237710167216e-07,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.width_neg": {
+      "value": 4.984881308813802e-07,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.duty_pos": {
+      "value": 50.0266032593089,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.duty_neg": {
+      "value": 49.8100406466917,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.burst_width": {
+      "error": "MEAS1 produced no fresh populated result after 5s",
+      "esr": 0,
+      "events": ""
+    },
+    "time.high_time": {
+      "value": 1.99144807229191e-07,
+      "esr": 0,
+      "events": ""
+    },
+    "time.low_time": {
+      "value": 2.099036419298721e-07,
+      "esr": 0,
+      "events": ""
+    },
+    "time.n_period": {
+      "value": 5.999796687475e-06,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.data_rate": {
+      "value": 2000067.9577382,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.time_outside_level": {
+      "value": 3.58979781533e-08,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.unit_interval": {
+      "value": 5.000285200867205e-07,
+      "esr": 0,
+      "events": ""
+    },
+    "time.time_to_max": {
+      "value": -1.74992e-06,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "time.time_to_min": {
+      "value": 4.75344e-06,
+      "esr": 0,
+      "events": ""
+    },
+    "dual.delay": {
+      "value": 0.0,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "dual.phase": {
+      "value": 0.0,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "dual.skew": {
+      "value": 0.0,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "dual.setup": {
+      "value": 0.0,
+      "esr": 0,
+      "events": ""
+    },
+    "dual.hold": {
+      "value": 0.0,
+      "esr": 0,
+      "events": ""
+    },
+    "dual.common_mode": {
+      "value": -0.00171839989076,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    },
+    "dual.ac_common_mode": {
+      "value": 2.0427812337875,
+      "esr": 16,
+      "events": "549,\"Measurement warning, Clipping negative\""
+    }
+  }
+}

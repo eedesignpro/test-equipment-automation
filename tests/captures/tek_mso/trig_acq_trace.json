@@ -1,0 +1,307 @@
+[
+ {
+  "op": "query",
+  "cmd": "TRIGger:STATE?",
+  "resp": "TRIGGER\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.get_state",
+  "result": "'TRIGGER'"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIG:A:HOLD:BY TIMe"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIG:A:HOLD:BY?",
+  "resp": "TIME\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.holdoff_by_time",
+  "result": "'TIME'"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIG:A:HOLD:BY RANDom"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIG:A:HOLD:BY?",
+  "resp": "RANDOM\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.holdoff_by_random",
+  "result": "'RANDOM'"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:HYSTeresis:USER:STATe ON"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:HYSTeresis:USER:VALue 0.12"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:HYSTeresis:USER:VALue?",
+  "resp": "120.0000E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.user_hyst",
+  "result": "0.12"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:HYSTeresis:USER:STATe?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:HYSTeresis:USER:VALue?",
+  "resp": "120.0000E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.get_user_hyst",
+  "result": "(True, 0.12)"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:HYSTeresis:USER:STATe OFF"
+ },
+ {
+  "op": "note",
+  "step": "trig.user_hyst_off",
+  "result": "None"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:STATE ON"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:STATE?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_state_on",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:BY EVENTS"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:BY?",
+  "resp": "EVENTS\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_by_events",
+  "result": "'EVENTS'"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:EVENTS:COUNt 3"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:EVENTS:COUNt?",
+  "resp": "3\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_events_count",
+  "result": "3"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:BY TIMe"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:BY?",
+  "resp": "TIME\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_by_time",
+  "result": "'TIME'"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:TIMe 5e-08"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:TIMe?",
+  "resp": "50.0800E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_time",
+  "result": "5.008e-08"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:TYPe EDGE"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:EDGE:SOUrce CH5"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:EDGE:SLOpe RISE"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:EDGE:COUPling DC"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:LEVel:CH5 0"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:LEVel:CH5?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.config_b_edge",
+  "result": "0.0"
+ },
+ {
+  "op": "write",
+  "cmd": "TRIGger:B:STATE OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "TRIGger:B:STATE?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "trig.b_state_off",
+  "result": "False"
+ },
+ {
+  "op": "note",
+  "step": "trig.STATUs_probe",
+  "error": "VisaIOError"
+ },
+ {
+  "op": "esr",
+  "resp": "32"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:SEQ:CURRENT?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.seq_current",
+  "result": "0"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:SEQ:MOD?",
+  "resp": "NUMACQS\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.seq_mode",
+  "result": "'NUMACQS'"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:SEQ:MOD NUMACQs"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:SEQ:MOD?",
+  "resp": "NUMACQS\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.set_seq_mode",
+  "result": "'NUMACQS'"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:FASTAV:STATE ON"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:FASTAV:STATE?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.fastavg_state",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:FASTAV:LIM 16"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:FASTAV:LIM?",
+  "resp": "16\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.fastavg_limit",
+  "result": "16"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:FASTAV:STOPA 64"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:FASTAV:STOPA?",
+  "resp": "64\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.fastavg_stopafter",
+  "result": "64"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:FASTAV:STATE OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:FASTAV:STATE?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "acq.fastavg_off",
+  "result": "False"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STOPA RUNST"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STATE RUN"
+ },
+ {
+  "op": "esr",
+  "resp": "0"
+ }
+]

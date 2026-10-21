@@ -1,0 +1,45 @@
+{
+  "task": "T1",
+  "steps": [
+    {
+      "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+      "model": "MSO58",
+      "num_channels": 8,
+      "step": "connect"
+    },
+    {
+      "esr_after": 0,
+      "step": "clear_status"
+    },
+    {
+      "elapsed_s": 0.032,
+      "step": "wait_for_complete"
+    },
+    {
+      "ch5_scale": 0.5,
+      "horiz_mode": "AUTO",
+      "step": "found_state"
+    },
+    {
+      "requested": 1.0,
+      "applied": 1.0,
+      "readback": 1.0,
+      "step": "inside_context"
+    },
+    {
+      "ch5_scale": 0.5,
+      "horiz_mode": "AUTO",
+      "restored": true,
+      "step": "after_context"
+    },
+    {
+      "ch5_scale": 0.5,
+      "restored": true,
+      "step": "after_exception_context"
+    },
+    {
+      "present": false,
+      "step": "scratch_listing_has_preserved"
+    }
+  ]
+}

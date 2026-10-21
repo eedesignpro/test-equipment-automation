@@ -1,0 +1,243 @@
+{
+  "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+  "opt": "5-ULTIMATE-PER:License; Software Bundle; Ultimate Bundle for 5 Series MSO; Requires 5-WIN; Perpetual License; Node Locked,BW5-2000:License; 2 GHz bandwidth on 5 Series Oscilloscopes; Node locked,LIC5-SREMBD:License (installed option); Embedded serial triggering and analysis (I2C, SPI); Node locked,LIC5-VID:License; Analog Video Trigger(NTSC, PAL, SECAM); Node Locked,LIC5-PWR:License (installed option); Advanced power analysis; Node locked",
+  "meas": {
+    "frequency_hz": 999999.8730412109,
+    "amplitude_v": 1.9918558558559,
+    "pk2pk_v": 2.064
+  },
+  "wfm_file": "ch5_sine_1mhz.wfm",
+  "csv_file": "ch5_sine_1mhz.csv",
+  "screenshot_file": "screenshot_mso58.png",
+  "wfm_bytes": 10989,
+  "parsed": {
+    "npts": 10064,
+    "dt_s": 1.6e-10,
+    "y_min": -1.032,
+    "y_max": 1.008
+  },
+  "csv_numeric_rows": 10005,
+  "png_magic_hex": "89504e470d0a1a0a",
+  "trace": [
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:LIST?",
+      "resp": "NONE"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:ADDNew \"MEAS1\""
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS1:TYPe FREQUENCY"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+    },
+    {
+      "dir": "query",
+      "cmd": "*OPC?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "20"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1999"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "20"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1999"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "20"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1999"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "22"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+      "resp": "999.9998730412109E+3"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:LIST?",
+      "resp": "MEAS1"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:ADDNew \"MEAS2\""
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS2:TYPe AMPLITUDE"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS2:SOUrce CH5"
+    },
+    {
+      "dir": "query",
+      "cmd": "*OPC?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "24"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "24"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "24"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "24"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "25"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS2:RESUlts:CURRentacq:MEAN?",
+      "resp": "1.9918558558559"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:LIST?",
+      "resp": "MEAS1,MEAS2"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:ADDNew \"MEAS3\""
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS3:TYPe PK2PK"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:MEAS3:SOUrce CH5"
+    },
+    {
+      "dir": "query",
+      "cmd": "*OPC?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "27"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "27"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "27"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "27"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "27"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:POPUlation?",
+      "resp": "1"
+    },
+    {
+      "dir": "query",
+      "cmd": "ACQ:NUMAC?",
+      "resp": "28"
+    },
+    {
+      "dir": "query",
+      "cmd": "MEASUrement:MEAS3:RESUlts:CURRentacq:MEAN?",
+      "resp": "2.0640"
+    },
+    {
+      "dir": "write",
+      "cmd": "MEASUrement:DELete \"MEAS3\""
+    }
+  ]
+}

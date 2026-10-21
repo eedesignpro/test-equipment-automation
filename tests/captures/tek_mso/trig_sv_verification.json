@@ -1,0 +1,95 @@
+{
+  "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+  "results": {
+    "meas_burst_width_retest": {
+      "error": "MEAS1 produced no fresh populated result after 5s",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_timeout": {
+      "result": "2e-06",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_runt": {
+      "result": "(0.8, -0.8)",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_window": {
+      "result": "(0.5, -0.5)",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_transition": {
+      "result": "1e-07",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_video": {
+      "result": "'NTSC'",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_video_PAL": {
+      "result": "'PAL'",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_video_SECAM": {
+      "result": "'SECAM'",
+      "esr": 0,
+      "events": ""
+    },
+    "trig_restore_edge": {
+      "result": "0.0",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_ch5_state_on": {
+      "result": "None",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_center": {
+      "result": "None",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_span": {
+      "result": "None",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_peak_markers_on": {
+      "result": "None",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_peak_count": {
+      "result": "5",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_peak_threshold": {
+      "result": "-50.0",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_get_peaks": {
+      "result": "[(896484.6618193435, -33.6537170410156), (1000000.0, 6.4113416671753), (1103515.3381807, -33.6534156799316)]",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_ref_freq": {
+      "result": "1000000.0",
+      "esr": 0,
+      "events": ""
+    },
+    "sv_ch5_state_off": {
+      "result": "None",
+      "esr": 0,
+      "events": ""
+    }
+  }
+}

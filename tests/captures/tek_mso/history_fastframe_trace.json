@@ -1,0 +1,421 @@
+[
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:STATE?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.state_before",
+  "result": "False"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:MAXFRames?",
+  "resp": "8000\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.max_frames",
+  "result": "8000"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:STATE ON"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:STATE?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.state_on",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:COUNt 10"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:COUNt?",
+  "resp": "10\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.count",
+  "result": "10"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:COUNt?",
+  "resp": "10\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.get_count",
+  "result": "10"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STOPA SEQ"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:SEQ:NUMSEQ 10"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STATE RUN"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:SELECTED 3"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:SELECTED?",
+  "resp": "3\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.selected",
+  "result": "3"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:SUMFrame AVErage"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:SUMFrame?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.summary",
+  "result": "'NONE'"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:SUMFrame:STATE ON"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:SUMFrame:STATE?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.summary_state",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:MULtipleframes:MODe OVERlay"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:MULtipleframes:MODe?",
+  "resp": "OVERLAY\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.multi_mode",
+  "result": "'OVERLAY'"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:REF:FRAme 1"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:REF:FRAme?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.ref_frame",
+  "result": "1"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:REF:INCLUde ON"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:REF:INCLUde?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.ref_include",
+  "result": "True"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:TIMEStamp:SELECTED?",
+  "resp": "\"23.07.2026.13:22:48.954694073115\"\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.ts_selected",
+  "result": "'23.07.2026.13:22:48.954694073115'"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:TIMEStamp:DELTa?",
+  "resp": "\"0.000021999360\"\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.ts_delta",
+  "result": "'0.000021999360'"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:XZEro:SELECTED?",
+  "resp": "160.00E-12\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.xzero_selected",
+  "result": "1.6e-10"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:FRAMESTARt 1"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:FRAMESTARt?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "data.frame_start",
+  "result": "1"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:FRAMESTOP MAX"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:FRAMESTOP?",
+  "resp": "MAX\n"
+ },
+ {
+  "op": "note",
+  "step": "data.frame_stop_max",
+  "result": "'MAX'"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:FRAMESTOP 3"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:FRAMESTOP?",
+  "resp": "3\n"
+ },
+ {
+  "op": "note",
+  "step": "data.frame_stop_3",
+  "result": "3"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:SOUrce?",
+  "resp": "CH5\n"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:ENCdg RIBinary"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:ENCdg?",
+  "resp": "RIBINARY\n"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:WIDth 1"
+ },
+ {
+  "op": "query",
+  "cmd": "DATa:WIDth?",
+  "resp": "1\n"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:STARt 1"
+ },
+ {
+  "op": "query",
+  "cmd": "HOR:RECO?",
+  "resp": "62500\n"
+ },
+ {
+  "op": "write",
+  "cmd": "DATa:STOP 62500"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:BYT_Nr?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:BIT_Nr?",
+  "resp": "8\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:BN_Fmt?",
+  "resp": "RI\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:BYT_Or?",
+  "resp": "MSB\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:ENCdg?",
+  "resp": "BINARY\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:NR_Pt?",
+  "resp": "62500\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:PT_Off?",
+  "resp": "31250\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:XINcr?",
+  "resp": "160.00E-12\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:XZEro?",
+  "resp": "160.00E-12\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:YMUlt?",
+  "resp": "20.0000E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:YOFf?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "query",
+  "cmd": "WFMOutpre:YZEro?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "write",
+  "cmd": "CURVe?"
+ },
+ {
+  "op": "note",
+  "step": "data.get_waveform_frame",
+  "result": "array([-0.02, -0.02, -0.02, ..., -0.02, -0.02, -0.02], shape=(62500,))"
+ },
+ {
+  "op": "note",
+  "step": "frame_wf_stats",
+  "n": 62500,
+  "mn": -0.54,
+  "mx": 0.54
+ },
+ {
+  "op": "esr",
+  "resp": "32"
+ },
+ {
+  "op": "write",
+  "cmd": "TSTamptable:ADDNew \"TABLE1\""
+ },
+ {
+  "op": "note",
+  "step": "hist.add_table",
+  "result": "None"
+ },
+ {
+  "op": "query",
+  "cmd": "TSTamptable:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "hist.list",
+  "result": "[]"
+ },
+ {
+  "op": "write",
+  "cmd": "TSTamptable:DELETE \"TABLE1\""
+ },
+ {
+  "op": "note",
+  "step": "hist.delete",
+  "result": "None"
+ },
+ {
+  "op": "query",
+  "cmd": "TSTamptable:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "hist.list_after",
+  "result": "[]"
+ },
+ {
+  "op": "write",
+  "cmd": "HORizontal:FASTframe:STATE OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "HORizontal:FASTframe:STATE?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "ff.state_restore",
+  "result": "False"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STOPA RUNST"
+ },
+ {
+  "op": "write",
+  "cmd": "ACQ:STATE RUN"
+ },
+ {
+  "op": "esr",
+  "resp": "48"
+ }
+]

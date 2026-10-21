@@ -1,0 +1,359 @@
+[
+ {
+  "op": "write",
+  "cmd": "DISplay:SELect:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:SELect:SOUrce?",
+  "resp": "CH5\n"
+ },
+ {
+  "op": "note",
+  "step": "disp.select_source",
+  "result": "'CH5'"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:SELect:SOUrce?",
+  "resp": "CH5\n"
+ },
+ {
+  "op": "note",
+  "step": "disp.get_select_source",
+  "result": "'CH5'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:SELect:VIEW WAVEVIEW1"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:SELect:VIEW?",
+  "resp": "WAVEVIEW1\n"
+ },
+ {
+  "op": "note",
+  "step": "disp.select_view",
+  "result": "'WAVEVIEW1'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:SELect:WAVEView1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:SELect:WAVEView1:SOUrce?",
+  "resp": "CH5\n"
+ },
+ {
+  "op": "note",
+  "step": "disp.waveview_source",
+  "result": "'CH5'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:SELect:REFerence NONE"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:SELect:REFerence?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "disp.select_ref_none",
+  "result": "'NONE'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH1?",
+  "resp": "PASSED;\"\";\"\";9.9999E+36;100.0000E-3;\"C164798\";\"TPP1000\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;600.0000;10.0000E+6;PASSED;\"N/A\";\"N/A\";0;0;\"V\";DEFAULT;DEFAULT;AUTO;1.0;0.0E+0;\"A\";0;1.0000E+9;1.0000E+9;\"2e+07,2.5e+08,1e+09\";STEPRESPONSE;0;0;DC;0.0E+0;0.0E+0;0;0.0E+0;200.0000E-3;1.0000;10.0000;0.0E+0;0.0E+0;0.0E+0;1.0000E+6;50.0000;0.0E+0;0;2.0000E+6;\"\";\"\";14;\"Frutiger LT Std 55 Roman\";0;0;0;45.0000;0.0E+0;250.0000E+3\n"
+ },
+ {
+  "op": "note",
+  "step": "ch1.get_config",
+  "result": "['PASSED', '', '', '9.9999E+36', '100.0000E-3', 'C164798', 'TPP1000', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '600.0000', '10.0000E+6', 'PASSED', 'N/A', 'N/A', '0', '0', 'V', 'DEFAULT', 'DEFAULT', 'AUTO', '1.0', '0.0E+0', 'A', '0', '1.0000E+9', '1.0000E+9', '2e+07,2.5e+08,1e+09', 'STEPRESPONSE', '0', '0', 'DC', '0.0E+0', '0.0E+0', '0', '0.0E+0', '200.0000E-3', '1.0000', '10.0000', '0.0E+0', '0.0E+0', '0.0E+0', '1.0000E+6', '50.0000', '0.0E+0', '0', '2.0000E+6', '', '', '14', 'Frutiger LT Std 55 Roman', '0', '0', '0', '45.0000', '0.0E+0', '250.0000E+3']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH1:PRObe?",
+  "resp": "PASSED;\"\";\"\";9.9999E+36;100.0000E-3;\"C164798\";\"TPP1000\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;600.0000;10.0000E+6;PASSED;\"N/A\";\"N/A\";0;0;\"V\";DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch1.get_probe_config",
+  "result": "['PASSED', '', '', '9.9999E+36', '100.0000E-3', 'C164798', 'TPP1000', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '600.0000', '10.0000E+6', 'PASSED', 'N/A', 'N/A', '0', '0', 'V', 'DEFAULT']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH1:PROBECal?",
+  "resp": "DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch1.probe_cal",
+  "result": "'DEFAULT'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH1:PRObe:SELFCal:State?",
+  "resp": "PASSED\n"
+ },
+ {
+  "op": "note",
+  "step": "ch1.selfcal_state",
+  "result": "'PASSED'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH1:PROBETYPE?",
+  "resp": "ANALOG\n"
+ },
+ {
+  "op": "note",
+  "step": "ch1.probe_type",
+  "result": "'ANALOG'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH4?",
+  "resp": "PASSED;\"\";\"\";9.9999E+36;100.0000E-3;\"B056726\";\"TCP202\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;80.0000;-1.0000;PASSED;\"N/A\";\"N/A\";0;0;\"A\";DEFAULT;DEFAULT;AUTO;1.0;0.0E+0;\"A\";0;250.0000E+6;250.0000E+6;\"2e+07,2.5e+08,2e+09\";STEPRESPONSE;0;0;DC;0.0E+0;0.0E+0;0;-1.0000E-3;0.0E+0;1.0000;200.0000E-3;0.0E+0;0.0E+0;0.0E+0;1.0000E+6;50.0000;0.0E+0;0;2.0000E+6;\"\";\"\";14;\"Frutiger LT Std 55 Roman\";0;0;0;45.0000;0.0E+0;50.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "ch4.get_config",
+  "result": "['PASSED', '', '', '9.9999E+36', '100.0000E-3', 'B056726', 'TCP202', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '80.0000', '-1.0000', 'PASSED', 'N/A', 'N/A', '0', '0', 'A', 'DEFAULT', 'DEFAULT', 'AUTO', '1.0', '0.0E+0', 'A', '0', '250.0000E+6', '250.0000E+6', '2e+07,2.5e+08,2e+09', 'STEPRESPONSE', '0', '0', 'DC', '0.0E+0', '0.0E+0', '0', '-1.0000E-3', '0.0E+0', '1.0000', '200.0000E-3', '0.0E+0', '0.0E+0', '0.0E+0', '1.0000E+6', '50.0000', '0.0E+0', '0', '2.0000E+6', '', '', '14', 'Frutiger LT Std 55 Roman', '0', '0', '0', '45.0000', '0.0E+0', '50.0000']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH4:PRObe?",
+  "resp": "PASSED;\"\";\"\";9.9999E+36;100.0000E-3;\"B056726\";\"TCP202\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;80.0000;-1.0000;PASSED;\"N/A\";\"N/A\";0;0;\"A\";DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch4.get_probe_config",
+  "result": "['PASSED', '', '', '9.9999E+36', '100.0000E-3', 'B056726', 'TCP202', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '80.0000', '-1.0000', 'PASSED', 'N/A', 'N/A', '0', '0', 'A', 'DEFAULT']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH4:PROBECal?",
+  "resp": "DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch4.probe_cal",
+  "result": "'DEFAULT'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH4:PRObe:SELFCal:State?",
+  "resp": "PASSED\n"
+ },
+ {
+  "op": "note",
+  "step": "ch4.selfcal_state",
+  "result": "'PASSED'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH4:PROBETYPE?",
+  "resp": "ANALOG\n"
+ },
+ {
+  "op": "note",
+  "step": "ch4.probe_type",
+  "result": "'ANALOG'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5?",
+  "resp": "PASSED;\"\";\"\";10.0000E+36;1.0000;\"N/A\";\"1X\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;10.0000E+36;1.0000E+6;PASSED;\"N/A\";\"N/A\";0;0;\"V\";DEFAULT;DEFAULT;AUTO;1.0;0.0E+0;\"A\";0;500.0000E+6;500.0000E+6;\"2e+07,2.5e+08,5e+08\";STEPRESPONSE;0;0;DC;0.0E+0;0.0E+0;0;0.0E+0;0.0E+0;1.0000;500.0000E-3;0.0E+0;0.0E+0;0.0E+0;1.0000E+6;50.0000;0.0E+0;0;2.0000E+6;\"\";\"\";14;\"Frutiger LT Std 55 Roman\";0;0;0;45.0000;0.0E+0;1.0000E+6\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.get_config",
+  "result": "['PASSED', '', '', '10.0000E+36', '1.0000', 'N/A', '1X', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '10.0000E+36', '1.0000E+6', 'PASSED', 'N/A', 'N/A', '0', '0', 'V', 'DEFAULT', 'DEFAULT', 'AUTO', '1.0', '0.0E+0', 'A', '0', '500.0000E+6', '500.0000E+6', '2e+07,2.5e+08,5e+08', 'STEPRESPONSE', '0', '0', 'DC', '0.0E+0', '0.0E+0', '0', '0.0E+0', '0.0E+0', '1.0000', '500.0000E-3', '0.0E+0', '0.0E+0', '0.0E+0', '1.0000E+6', '50.0000', '0.0E+0', '0', '2.0000E+6', '', '', '14', 'Frutiger LT Std 55 Roman', '0', '0', '0', '45.0000', '0.0E+0', '1.0000E+6']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:PRObe?",
+  "resp": "PASSED;\"\";\"\";10.0000E+36;1.0000;\"N/A\";\"1X\";DEFAULT;0.0E+0;0.0E+0;0.0E+0;0.0E+0;10.0000E+36;1.0000E+6;PASSED;\"N/A\";\"N/A\";0;0;\"V\";DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.get_probe_config",
+  "result": "['PASSED', '', '', '10.0000E+36', '1.0000', 'N/A', '1X', 'DEFAULT', '0.0E+0', '0.0E+0', '0.0E+0', '0.0E+0', '10.0000E+36', '1.0000E+6', 'PASSED', 'N/A', 'N/A', '0', '0', 'V', 'DEFAULT']"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:PROBECal?",
+  "resp": "DEFAULT\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.probe_cal",
+  "result": "'DEFAULT'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:PRObe:SELFCal:State?",
+  "resp": "PASSED\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.selfcal_state",
+  "result": "'PASSED'"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:PROBETYPE?",
+  "resp": "ANALOG\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.probe_type",
+  "result": "'ANALOG'"
+ },
+ {
+  "op": "query",
+  "cmd": "CONFIGuration:ANALOg:BANDWidth?",
+  "resp": "2.0000E+9\n"
+ },
+ {
+  "op": "note",
+  "step": "analog_bandwidth",
+  "result": "2000000000.0"
+ },
+ {
+  "op": "write",
+  "cmd": "SELect:CH5 ON"
+ },
+ {
+  "op": "query",
+  "cmd": "SELect:CH5?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.selected_on",
+  "result": "True"
+ },
+ {
+  "op": "query",
+  "cmd": "SELect:CH5?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.get_selected",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "CH5:PROBEFunc:EXTDBatten 0"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:PROBEFunc:EXTDBatten?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "ch5.extdb",
+  "result": "0.0"
+ },
+ {
+  "op": "query",
+  "cmd": "REF:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "ref.list_before",
+  "result": "[]"
+ },
+ {
+  "op": "write",
+  "cmd": "SELect:CH5 ON"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:SELect:SOUrce CH5"
+ },
+ {
+  "op": "write",
+  "cmd": "REF:ADDNew \"REF1\""
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "REF:LIST?",
+  "resp": "REF1\n"
+ },
+ {
+  "op": "note",
+  "step": "ref1.save_from_ch5",
+  "result": "['REF1']"
+ },
+ {
+  "op": "write",
+  "cmd": "REF:REF1:LABel:NAMe \"myref\""
+ },
+ {
+  "op": "query",
+  "cmd": "REF:REF1:LABel:NAMe?",
+  "resp": "\"myref\"\n"
+ },
+ {
+  "op": "note",
+  "step": "ref1.label",
+  "result": "'myref'"
+ },
+ {
+  "op": "query",
+  "cmd": "REF:REF1:LABel:NAMe?",
+  "resp": "\"myref\"\n"
+ },
+ {
+  "op": "note",
+  "step": "ref1.get_label",
+  "result": "'myref'"
+ },
+ {
+  "op": "write",
+  "cmd": "REF:REF1:DESKew 0"
+ },
+ {
+  "op": "query",
+  "cmd": "REF:REF1:DESKew?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "ref1.deskew",
+  "result": "0.0"
+ },
+ {
+  "op": "write",
+  "cmd": "REF:DELete \"REF1\""
+ },
+ {
+  "op": "query",
+  "cmd": "REF:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "ref1.delete",
+  "result": "[]"
+ },
+ {
+  "op": "esr",
+  "resp": "0"
+ }
+]

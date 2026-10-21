@@ -1,0 +1,663 @@
+[
+ {
+  "op": "query",
+  "cmd": "MEASUrement:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:ADDNew \"MEAS1\""
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:TYPe AMPLITUDE"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:MEAS1:SOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "15\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:POPUlation?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "ACQ:NUMAC?",
+  "resp": "29\n"
+ },
+ {
+  "op": "query",
+  "cmd": "MEASUrement:MEAS1:RESUlts:CURRentacq:MEAN?",
+  "resp": "979.3593593593592E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "amp_for_export",
+  "result": "0.9793593593593592"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "write",
+  "cmd": "FILESystem:CWD \"C:/\""
+ },
+ {
+  "op": "query",
+  "cmd": "FILESystem:DIR?",
+  "resp": "\"pyvisa_tmp\"\n"
+ },
+ {
+  "op": "write",
+  "cmd": "SAVe:EVENTtable:MEASUrement \"C:/pyvisa_tmp/Temp.csv\""
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "write",
+  "cmd": "FILESystem:CWD \"C:/pyvisa_tmp/\""
+ },
+ {
+  "op": "query",
+  "cmd": "FILESystem:LDIR?",
+  "resp": "\"Temp.csv;FILE;396;2026-07-23;13:22:49\",\"preserved_20260723_142259.set;FILE;11217;2026-07-23;13:22:43\"\n"
+ },
+ {
+  "op": "write",
+  "cmd": "FILESystem:READFile \"C:/pyvisa_tmp/Temp.csv\""
+ },
+ {
+  "op": "write",
+  "cmd": "FILESystem:DELEte \"C:/pyvisa_tmp/Temp.csv\""
+ },
+ {
+  "op": "note",
+  "step": "get_measurement_table",
+  "result": "b'TekScope,Version 2.6.38\\nDate-Time,2026-07-23T13:22:49-07:00\\n\\nMeasurement Results\\nName,Measurement,Label,Source,Mean\\',Min\\',Max\\',Pk-Pk\\',Std Dev\\',Population\\',Accum-Mean,Accum-Min,Accum-Max,Accum-Pk-Pk,Accum-Std Dev,Accum-Population,\\nMeas1, Amplitude, Amplitude,\" Ch 5 \",979.36 mV,979.36 mV,979.36 mV,0.0000 V,0.0000 V,1,979.62 mV,979.36 mV,981.08 mV,1.7217 mV,545.90 uV,21, , , , , , , , , , , , \\n\\n\\n'"
+ },
+ {
+  "op": "note",
+  "step": "meas_table_bytes",
+  "n": 396,
+  "head": "TekScope,Version 2.6.38\nDate-Time,2026-07-23T13:22:49-07:00\n\nMeasurement Results\nName,Measurement,Label,Source,Mean',Min"
+ },
+ {
+  "op": "write",
+  "cmd": "SAVe:IMAGe:COMPosition NORMal"
+ },
+ {
+  "op": "query",
+  "cmd": "SAVe:IMAGe:COMPosition?",
+  "resp": "NORMAL\n"
+ },
+ {
+  "op": "note",
+  "step": "image_composition",
+  "result": "'NORMAL'"
+ },
+ {
+  "op": "write",
+  "cmd": "MEASUrement:DELETEALL"
+ },
+ {
+  "op": "note",
+  "step": "meas.cleanup",
+  "result": "None"
+ },
+ {
+  "op": "write",
+  "cmd": "CH5:SV:STATE ON"
+ },
+ {
+  "op": "note",
+  "step": "sv.ch5_state",
+  "result": "None"
+ },
+ {
+  "op": "write",
+  "cmd": "*WAI"
+ },
+ {
+  "op": "query",
+  "cmd": "*OPC?",
+  "resp": "1\n"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:SV:SPANABovebw?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.span_above_bw",
+  "result": "0.0"
+ },
+ {
+  "op": "query",
+  "cmd": "CH5:SV:SPANBELowdc?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.span_below_dc",
+  "result": "0.0"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:CH5:SELect:SPECtrogram ON"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:CH5:SELect:SPECtrogram?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.spectrogram_on",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:CH5:SELect:RF_NORMal ON"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:CH5:SELect:RF_NORMal?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.rf_normal",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:LOCKSpectrum OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:LOCKSpectrum?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.lock_spectrum",
+  "result": "False"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:SPECtrogram:CSCale:MIN -140"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:SPECtrogram:CSCale:MAX -40"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:SPECtrogram:CSCale:MIN?",
+  "resp": "-140.00\n"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:SPECtrogram:CSCale:MAX?",
+  "resp": "-40.0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.cscale",
+  "result": "(-140.0, -40.0)"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:SPECtrogram:CURSor:A ON"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:SPECtrogram:CURSor:A?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.cursorA",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:SPECtrogram:CURSor:A OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:SPECtrogram:CURSor:A?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.cursorA_off",
+  "result": "False"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:RF_PHASe:REFerence:MASTer NONE"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:RF_PHASe:REFerence:MASTer?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.rf_phase_master",
+  "result": "'NONE'"
+ },
+ {
+  "op": "write",
+  "cmd": "PEAKSTABle:ADDNew \"TABLE1\""
+ },
+ {
+  "op": "query",
+  "cmd": "PEAKSTABle:LIST?",
+  "resp": "TABLE1\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.peaks_add",
+  "result": "['TABLE1']"
+ },
+ {
+  "op": "query",
+  "cmd": "PEAKSTABle:LIST?",
+  "resp": "TABLE1\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.peaks_list",
+  "result": "['TABLE1']"
+ },
+ {
+  "op": "write",
+  "cmd": "PEAKSTABle:DELete \"TABLE1\""
+ },
+ {
+  "op": "query",
+  "cmd": "PEAKSTABle:LIST?",
+  "resp": "NONE\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.peaks_delete",
+  "result": "[]"
+ },
+ {
+  "op": "write",
+  "cmd": "SV:CH5:SELect:SPECtrogram OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "SV:CH5:SELect:SPECtrogram?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "sv.spectrogram_off",
+  "result": "False"
+ },
+ {
+  "op": "write",
+  "cmd": "CH5:SV:STATE OFF"
+ },
+ {
+  "op": "note",
+  "step": "sv.ch5_off",
+  "result": "None"
+ },
+ {
+  "op": "esr",
+  "resp": "0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:STATE ON"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:STATE?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.state_on",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:FUNCtion VBArs"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:FUNCtion?",
+  "resp": "VBARS\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.function",
+  "result": "'VBARS'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:MODe INDEPENDENT"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:MODe?",
+  "resp": "INDEPENDENT\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.mode",
+  "result": "'INDEPENDENT'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:ASOUrce CH5"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:ASOUrce?",
+  "resp": "CH5\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.source_a",
+  "result": "'CH5'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:APOSition -2e-07"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:BPOSition 3e-07"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:APOSition?",
+  "resp": "-200.0E-9\n"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:BPOSition?",
+  "resp": "300.0E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.vbars",
+  "result": "(-2e-07, 3e-07)"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:DELTa?",
+  "resp": "500.0E-9\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.vbar_delta",
+  "result": "5e-07"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:VBArs:UNIts?",
+  "resp": "\"s\"\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.vbar_units",
+  "result": "'s'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:FUNCtion HBArs"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:FUNCtion?",
+  "resp": "HBARS\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.function_h",
+  "result": "'HBARS'"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:HBArs:APOSition -0.5"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:HBArs:BPOSition 0.5"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:HBArs:APOSition?",
+  "resp": "-500.0E-3\n"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:HBArs:BPOSition?",
+  "resp": "500.0E-3\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.hbars",
+  "result": "(-0.5, 0.5)"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:HBArs:DELTa?",
+  "resp": "1.0\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.hbar_delta",
+  "result": "1.0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:STATE OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:CURSor:CURSOR1:STATE?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "cur.state_off",
+  "result": "False"
+ },
+ {
+  "op": "esr",
+  "resp": "0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:STATe ON"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:STATe?",
+  "resp": "1\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.state_on",
+  "result": "True"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:HORizontal:SCALe 1e-07"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:HORizontal:SCALe?",
+  "resp": "1.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.hscale",
+  "result": "1.0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:HORizontal:POSition 50"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:HORizontal:POSition?",
+  "resp": "50.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.hpos",
+  "result": "50.0"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:HORizontal:SCALe?",
+  "resp": "1.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.get_hscale",
+  "result": "1.0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:VERTical:SCALe 1"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:VERTical:SCALe?",
+  "resp": "1.0000\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.vscale",
+  "result": "1.0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:VERTical:POSition 0"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:VERTical:POSition?",
+  "resp": "0.0E+0\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.vpos",
+  "result": "0.0"
+ },
+ {
+  "op": "write",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:STATe OFF"
+ },
+ {
+  "op": "query",
+  "cmd": "DISplay:WAVEView1:ZOOM:ZOOM1:STATe?",
+  "resp": "0\n"
+ },
+ {
+  "op": "note",
+  "step": "zoom.state_off",
+  "result": "False"
+ },
+ {
+  "op": "esr",
+  "resp": "0"
+ },
+ {
+  "op": "note",
+  "step": "dvm.raw_probe",
+  "error": "VisaIOError"
+ },
+ {
+  "op": "note",
+  "step": "dvm.gated",
+  "error": "HardwareNotPresentError"
+ },
+ {
+  "op": "esr",
+  "resp": "32"
+ }
+]

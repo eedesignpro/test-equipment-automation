@@ -1,0 +1,302 @@
+[
+  {
+    "op": "query",
+    "cmd": "*IDN?",
+    "resp": "HEWLETT-PACKARD,33120A,0,8.0-5.0-1.0"
+  },
+  {
+    "op": "query",
+    "cmd": "*IDN?",
+    "resp": "Agilent Technologies,E3646A,0,2.5-6.1-2.1"
+  },
+  {
+    "op": "write",
+    "cmd": "SYST:REM",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "OUTP?",
+    "resp": "0"
+  },
+  {
+    "op": "write",
+    "cmd": "INST:NSEL 1",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:RANG?",
+    "resp": "P8V"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT?",
+    "resp": "+2.20000000E+01"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT:STAT?",
+    "resp": "1"
+  },
+  {
+    "op": "write",
+    "cmd": "INST:NSEL 2",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:RANG?",
+    "resp": "P8V"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT?",
+    "resp": "+2.20000000E+01"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:PROT:STAT?",
+    "resp": "1"
+  },
+  {
+    "op": "write",
+    "cmd": "INST:NSEL 1",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT?",
+    "resp": "+0.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "CURR?",
+    "resp": "+3.00000000E+00"
+  },
+  {
+    "op": "query",
+    "cmd": "SYST:VERS?",
+    "resp": "1997.0"
+  },
+  {
+    "op": "query",
+    "cmd": "DISP?",
+    "resp": "1"
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:MODE?",
+    "resp": "VI"
+  },
+  {
+    "op": "write",
+    "cmd": "DISP:TEXT \"BENCH\"",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:TEXT?",
+    "resp": "\"BENCH\""
+  },
+  {
+    "op": "query",
+    "cmd": "DISP:TEXT?",
+    "resp": "\"BENCH\""
+  },
+  {
+    "op": "write",
+    "cmd": "DISP:TEXT:CLE",
+    "resp": null
+  },
+  {
+    "op": "write",
+    "cmd": "SYST:BEEP",
+    "resp": null
+  },
+  {
+    "op": "write",
+    "cmd": "VOLT:RANG LOW",
+    "resp": null
+  },
+  {
+    "op": "query",
+    "cmd": "VOLT:RANG?",
+    "resp": "P8V"
+  },
+  {
+    "op": "write",
+    "cmd": "VOLT 5",
+    "resp": null
+  }
+]

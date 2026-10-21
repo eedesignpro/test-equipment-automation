@@ -1,0 +1,14 @@
+{
+  "session": "B",
+  "results": {
+    "idn": "TEKTRONIX,MSO58,C000000,CF:91.1CT FV:2.6.38.1348",
+    "original_cwd": "C:",
+    "usb_drive": "E:",
+    "root_listing_before": "\"System Volume Information;DIR;65536;2026-01-19;15:42:04\",\"id_ed25519.pub;FILE;89;2026-01-19;15:41:48\"",
+    "scratch_after_save": "\"orig.set;FILE;11177;2026-07-23;12:38:58\"",
+    "scratch_after_copy": "\"copy.set;FILE;11177;2026-07-23;12:38:58\",\"orig.set;FILE;11177;2026-07-23;12:38:58\"",
+    "scratch_after_rename": "\"orig.set;FILE;11177;2026-07-23;12:38:58\",\"renamed.set;FILE;11177;2026-07-23;12:38:58\"",
+    "root_listing_after": "\"System Volume Information;DIR;65536;2026-01-19;15:42:04\",\"id_ed25519.pub;FILE;89;2026-01-19;15:41:48\"",
+    "drive_left_as_found": true
+  }
+}

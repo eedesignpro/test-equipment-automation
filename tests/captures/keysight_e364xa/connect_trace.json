@@ -1,0 +1,17 @@
+[
+  {
+    "op": "query",
+    "cmd": "*IDN?",
+    "resp": "HEWLETT-PACKARD,33120A,0,8.0-5.0-1.0"
+  },
+  {
+    "op": "query",
+    "cmd": "*IDN?",
+    "resp": "Agilent Technologies,E3646A,0,2.5-6.1-2.1"
+  },
+  {
+    "op": "write",
+    "cmd": "SYST:REM",
+    "resp": null
+  }
+]
