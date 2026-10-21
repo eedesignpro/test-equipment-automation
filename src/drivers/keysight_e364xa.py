@@ -129,7 +129,7 @@ def _num(value: float | str) -> str:
     """Format an APPLy/level argument: a token (MIN/MAX/DEF) or a number."""
     if isinstance(value, str):
         return value
-    return f"{value:g}"
+    return f"{value:.12g}"
 
 
 def _canonical_range(token: str) -> str:

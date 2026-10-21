@@ -187,7 +187,7 @@ def _num(value: float | str) -> str:
     """Format a numeric SCPI argument: a token (MIN/MAX/DEF) or a number."""
     if isinstance(value, str):
         return value
-    return f"{value:g}"
+    return f"{value:.12g}"
 
 
 class _SigGenSerialLink(InstrumentLink):

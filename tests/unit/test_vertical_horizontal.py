@@ -58,7 +58,7 @@ def test_set_offset_and_termination_commands():
     scope.ch5.set_offset(0.1)
     assert "CH5:OFFS 0.1" in mock.writes
     scope.ch5.set_termination(1e6)
-    assert "CH5:TER 1e+06" in mock.writes
+    assert "CH5:TER 1000000" in mock.writes
 
 
 def test_set_probe_control_and_bandwidth_optimization_choice_maps():

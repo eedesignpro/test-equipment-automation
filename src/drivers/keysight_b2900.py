@@ -158,7 +158,7 @@ def _onoff(state: bool) -> str:
 
 
 def _num(value: float) -> str:
-    return f"{float(value):g}"
+    return f"{float(value):.12g}"
 
 
 def _token(value, enum_cls: type[ScpiEnum], label: str) -> str:

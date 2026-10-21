@@ -102,9 +102,9 @@ def test_spectrum_window_invalid_choice(monkeypatch):
 def test_spectrum_center_span_rbw(monkeypatch):
     scope, mock = _connect_scope(monkeypatch, "TEKTRONIX,MSO58,C0,CF:91")
     scope.sv.set_center(1e6)
-    assert "CH1:SV:CENTERF 1e+06" in mock.writes
+    assert "CH1:SV:CENTERF 1000000" in mock.writes
     scope.sv.set_span(2e6)
-    assert mock.writes[-1] == "SV:SPAN 2e+06"
+    assert mock.writes[-1] == "SV:SPAN 2000000"
     scope.sv.set_rbw(1000)
     assert "SV:RBWM MAN" in mock.writes
     assert mock.writes[-1] == "SV:RBW 1000"

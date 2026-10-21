@@ -139,7 +139,7 @@ def _onoff(state: bool) -> str:
 
 def _num(value: float | str) -> str:
     """Format a range or level argument: a token such as AUTO, or a number."""
-    return value if isinstance(value, str) else f"{value:g}"
+    return value if isinstance(value, str) else f"{value:.12g}"
 
 
 def _token(value, enum_cls: type[ScpiEnum], label: str) -> str:

@@ -201,7 +201,7 @@ class InstrumentLink:
             self.write(f"{cmd} {value}")
             return self.query(f"{cmd}?").strip()
 
-        self.write(f"{cmd} {value:g}")
+        self.write(f"{cmd} {value:.12g}")
         applied = self.query_float(f"{cmd}?")
         if not math.isclose(applied, value, rel_tol=rel_tol, abs_tol=abs_tol):
             message = (

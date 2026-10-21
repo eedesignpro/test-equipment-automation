@@ -633,7 +633,7 @@ class _Horizontal(Node):
         1. scale : float
             - actual scale configured by the scope
         """
-        self.write(f"HOR:MOD:SCA {scale:g}")
+        self.write(f"HOR:MOD:SCA {scale:.12g}")
         self.query("*OPC?")
         return self.query_float("HOR:MOD:SCA?")
 
@@ -643,7 +643,7 @@ class _Horizontal(Node):
         1. position : float
             - 0.0 is left edge, 100.0 is right edge
         """
-        self.write(f"HOR:POS {percent:g}")
+        self.write(f"HOR:POS {percent:.12g}")
 
     def get_div_count(self) -> int:
         """Query the number of horizontal divisions"""
@@ -657,7 +657,7 @@ class _Horizontal(Node):
         """
         if delay > 0:
             self.write("HOR:DEL:MOD ON")
-            self.write(f"HOR:DEL:TIM {delay:g}")
+            self.write(f"HOR:DEL:TIM {delay:.12g}")
         else:
             self.write("HOR:DEL:MOD OFF")
 
@@ -710,7 +710,7 @@ class _Horizontal(Node):
             - actual sample rate configured on the scope
         """
         self._require_manual("sample rate")
-        self.write(f"HOR:MOD:SAMPLER {rate:g}")
+        self.write(f"HOR:MOD:SAMPLER {rate:.12g}")
         return self.query_float("HOR:MOD:SAMPLER?")
 
     def set_manual(self, samplerate: float, record_length: float) -> float:
@@ -730,7 +730,7 @@ class _Horizontal(Node):
             - actual values configured by the scope
         """
         self.write("HOR:MODE MAN")
-        self.write(f"HOR:MOD:SAMPLER {samplerate:g}")
+        self.write(f"HOR:MOD:SAMPLER {samplerate:.12g}")
         self.write(f"HOR:RECO {int(record_length)}")
         return (
             self.query_float("HOR:MOD:SAMPLER?"),
@@ -766,14 +766,14 @@ class _Horizontal(Node):
             raise ValueError(f"specify exactly two of scale/samplerate/record_length (got {given})")
         self.write("HOR:MODE MAN")
         if scale is None:
-            self.write(f"HOR:MOD:SAMPLER {samplerate:g}")
+            self.write(f"HOR:MOD:SAMPLER {samplerate:.12g}")
             self.write(f"HOR:RECO {int(record_length)}")
         elif record_length is None:
-            self.write(f"HOR:MOD:SAMPLER {samplerate:g}")
-            self.write(f"HOR:MOD:SCA {scale:g}")
+            self.write(f"HOR:MOD:SAMPLER {samplerate:.12g}")
+            self.write(f"HOR:MOD:SCA {scale:.12g}")
         else:
             derived_sr = record_length / (self.get_div_count() * scale)
-            self.write(f"HOR:MOD:SAMPLER {derived_sr:g}")
+            self.write(f"HOR:MOD:SAMPLER {derived_sr:.12g}")
             self.write(f"HOR:RECO {int(record_length)}")
         self.query("*OPC?")
         return self.get_timebase()
@@ -817,16 +817,16 @@ class _Horizontal(Node):
         """
         if snap["mode"].upper().startswith("MAN"):
             self.write("HOR:MODE MAN")
-            self.write(f"HOR:MOD:SAMPLER {snap['samplerate']:g}")
+            self.write(f"HOR:MOD:SAMPLER {snap['samplerate']:.12g}")
             self.write(f"HOR:RECO {int(snap['record_length'])}")
-            self.write(f"HOR:MOD:SCA {snap['scale']:g}")
+            self.write(f"HOR:MOD:SCA {snap['scale']:.12g}")
         else:
             self.write("HOR:MODE AUTO")
-            self.write(f"HOR:MOD:SCA {snap['scale']:g}")
-        self.write(f"HOR:POS {snap['position']:g}")
+            self.write(f"HOR:MOD:SCA {snap['scale']:.12g}")
+        self.write(f"HOR:POS {snap['position']:.12g}")
         if snap["delay_mode"]:
             self.write("HOR:DEL:MOD ON")
-            self.write(f"HOR:DEL:TIM {snap['delay_time']:g}")
+            self.write(f"HOR:DEL:TIM {snap['delay_time']:.12g}")
         else:
             self.write("HOR:DEL:MOD OFF")
         self.query("*OPC?")
@@ -1539,7 +1539,7 @@ class _Trigger(Node):
         """
         self.write(f"TRIGger:HYSTeresis:USER:STATe {'ON' if state else 'OFF'}")
         if value is not None:
-            self.write(f"TRIGger:HYSTeresis:USER:VALue {value:g}")
+            self.write(f"TRIGger:HYSTeresis:USER:VALue {value:.12g}")
             return self.query_float("TRIGger:HYSTeresis:USER:VALue?")
         return None
 
@@ -1596,7 +1596,7 @@ class _Trigger(Node):
 
     def set_b_time(self, seconds: float) -> float:
         """Set the B-trigger delay time in seconds; returns readback."""
-        self.write(f"TRIGger:B:TIMe {seconds:g}")
+        self.write(f"TRIGger:B:TIMe {seconds:.12g}")
         return self.query_float("TRIGger:B:TIMe?")
 
     def set_b_edge(
@@ -1635,7 +1635,7 @@ class _Trigger(Node):
         self.write(f"TRIGger:B:EDGE:SLOpe {token(slope, Slope, 'slope')}")
         self.write(f"TRIGger:B:EDGE:COUPling {token(coupling, TriggerCoupling, 'coupling')}")
         if level is not None:
-            self.write(f"TRIGger:B:LEVel:{source} {level:g}")
+            self.write(f"TRIGger:B:LEVel:{source} {level:.12g}")
         return self.query_float(f"TRIGger:B:LEVel:{source}?")
 
 
@@ -1699,7 +1699,7 @@ class _Channel(Node):
         1. scale : float
             - actual volts per division
         """
-        self.write(f"CH{self._ch}:SCA {scale:g}")
+        self.write(f"CH{self._ch}:SCA {scale:.12g}")
         return self.query_float(f"CH{self._ch}:SCA?")
 
     def get_scale(self) -> float:
@@ -1716,7 +1716,7 @@ class _Channel(Node):
         1. position : float
             - vertical position in divisions
         """
-        self.write(f"CH{self._ch}:POS {position:g}")
+        self.write(f"CH{self._ch}:POS {position:.12g}")
 
     def set_offset(self, offset: float) -> float:
         """Set the channel offset in volts
@@ -1727,7 +1727,7 @@ class _Channel(Node):
         1. offset : float
             - actual offset voltage
         """
-        self.write(f"CH{self._ch}:OFFS {offset:g}")
+        self.write(f"CH{self._ch}:OFFS {offset:.12g}")
         return self.query_float(f"CH{self._ch}:OFFS?")
 
     def set_termination(self, termination: float) -> float:
@@ -1740,7 +1740,7 @@ class _Channel(Node):
         1. termination : float
             - actual termination impedance in ohms
         """
-        self.write(f"CH{self._ch}:TER {termination:g}")
+        self.write(f"CH{self._ch}:TER {termination:.12g}")
         return self.query_float(f"CH{self._ch}:TER?")
 
     def set_units(self, units: str | None) -> str:
@@ -1778,7 +1778,7 @@ class _Channel(Node):
         1. atten : float
             - actual external attenuation factor
         """
-        self.write(f"CH{self._ch}:PROBEF:EXTA {atten:g}")
+        self.write(f"CH{self._ch}:PROBEF:EXTA {atten:.12g}")
         return self.query_float(f"CH{self._ch}:PROBEF:EXTA?")
 
     def set_invert(self, invert: bool) -> None:
@@ -1850,7 +1850,7 @@ class _Channel(Node):
         1. deskew : float
             - actual deskew time in seconds
         """
-        self.write(f"CH{self._ch}:DESK {deskew:g}")
+        self.write(f"CH{self._ch}:DESK {deskew:.12g}")
         return self.query_float(f"CH{self._ch}:DESK?")
 
     def get_deskew(self) -> float:
@@ -1935,7 +1935,7 @@ class _Channel(Node):
         1. db : float
             - actual external dB attenuation read back from the scope
         """
-        self.write(f"CH{self._ch}:PROBEFunc:EXTDBatten {db:g}")
+        self.write(f"CH{self._ch}:PROBEFunc:EXTDBatten {db:.12g}")
         return self.query_float(f"CH{self._ch}:PROBEFunc:EXTDBatten?")
 
     def get_ext_db_attenuation(self) -> float:
@@ -1966,7 +1966,7 @@ class _Spectrum(Node):
             - center frequency in Hz
         """
         self.write("SV:LOCKC ON")
-        self.write(f"CH1:SV:CENTERF {frequency:g}")
+        self.write(f"CH1:SV:CENTERF {frequency:.12g}")
 
     def set_channel_center(self, frequency: float) -> float:
         """Set THIS channel's spectrum center frequency independently (per-channel).
@@ -1984,7 +1984,7 @@ class _Spectrum(Node):
         """
         ch = self._require_channel()
         self.write("SV:LOCKC OFF")
-        self.write(f"CH{ch}:SV:CENTERF {frequency:g}")
+        self.write(f"CH{ch}:SV:CENTERF {frequency:.12g}")
         return self.query_float(f"CH{ch}:SV:CENTERF?")
 
     def get_channel_center(self) -> float:
@@ -1998,7 +1998,7 @@ class _Spectrum(Node):
         1. frequency : float
             - frequency span in Hz
         """
-        self.write(f"SV:SPAN {frequency:g}")
+        self.write(f"SV:SPAN {frequency:.12g}")
 
     def set_rbw(self, frequency: float) -> None:
         """Set the spectrum view manual resolution bandwidth
@@ -2007,7 +2007,7 @@ class _Spectrum(Node):
             - resolution bandwidth span in Hz
         """
         self.write("SV:RBWM MAN")
-        self.write(f"SV:RBW {frequency:g}")
+        self.write(f"SV:RBW {frequency:.12g}")
 
     def set_span_rbw_ratio(self, ratio: float) -> float:
         """Set the spectrum view automatic span to resolution bandwidth ratio
@@ -2019,7 +2019,7 @@ class _Spectrum(Node):
             - actual ratio
         """
         self.write("SV:RBWM AUTO")
-        self.write(f"SV:SPANRBWR {ratio:g}")
+        self.write(f"SV:SPANRBWR {ratio:.12g}")
         return self.query_float("SV:SPANRBWR?")
 
     def set_window(self, window: SpectrumWindow | str) -> None:
@@ -2061,7 +2061,7 @@ class _Spectrum(Node):
         1. threshold : float
             - actual threshold read back from the scope
         """
-        self.write(f"SV:MARKER:PEAK:THR {threshold:g}")
+        self.write(f"SV:MARKER:PEAK:THR {threshold:.12g}")
         return self.query_float("SV:MARKER:PEAK:THR?")
 
     def set_peak_excursion(self, excursion: float) -> float:
@@ -2073,7 +2073,7 @@ class _Spectrum(Node):
         1. excursion : float
             - actual excursion read back from the scope
         """
-        self.write(f"SV:MARKER:PEAK:EXCUR {excursion:g}")
+        self.write(f"SV:MARKER:PEAK:EXCUR {excursion:.12g}")
         return self.query_float("SV:MARKER:PEAK:EXCUR?")
 
     def set_marker_type(self, marker_type: SpectrumMarkerType | str) -> None:
@@ -2168,7 +2168,7 @@ class _Spectrum(Node):
             - actual vertical scale read back from the scope
         """
         ch = self._require_channel()
-        self.write(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:SCALE {db_per_div:g}")
+        self.write(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:SCALE {db_per_div:.12g}")
         return self.query_float(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:SCALE?")
 
     def get_scale(self, view: int = 1) -> float:
@@ -2195,7 +2195,7 @@ class _Spectrum(Node):
              - actual vertical position read back from the scope
         """
         ch = self._require_channel()
-        self.write(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:POSITION {divisions:g}")
+        self.write(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:POSITION {divisions:.12g}")
         return self.query_float(f"DISPLAY:SPECVIEW{view}:CH{ch}:VERTICAL:POSITION?")
 
     def get_position(self, view: int = 1) -> float:
@@ -2220,7 +2220,7 @@ class _Spectrum(Node):
             - actual spectrum time read back from the scope
         """
         ch = self._require_channel()
-        self.write(f"CH{ch}:SV:POSition {percent:g}")
+        self.write(f"CH{ch}:SV:POSition {percent:.12g}")
         return self.query_float(f"CH{ch}:SV:POSition?")
 
     def get_spectrum_time(self) -> float:
@@ -2261,7 +2261,7 @@ class _Spectrum(Node):
             - actual squelch threshold read back from the scope
         """
         ch = self._require_channel()
-        self.write(f"SV:CH{ch}:SQUELCH:THReshold {threshold:g}")
+        self.write(f"SV:CH{ch}:SQUELCH:THReshold {threshold:.12g}")
         return self.query_float(f"SV:CH{ch}:SQUELCH:THReshold?")
 
     def get_squelch_threshold(self) -> float:
@@ -2336,8 +2336,8 @@ class _Spectrum(Node):
         1. (minimum, maximum) : tuple[float, float]
             - actual color-scale min/max read back from the scope
         """
-        self.write(f"SV:SPECtrogram:CSCale:MIN {minimum:g}")
-        self.write(f"SV:SPECtrogram:CSCale:MAX {maximum:g}")
+        self.write(f"SV:SPECtrogram:CSCale:MIN {minimum:.12g}")
+        self.write(f"SV:SPECtrogram:CSCale:MAX {maximum:.12g}")
         return (
             self.query_float("SV:SPECtrogram:CSCale:MIN?"),
             self.query_float("SV:SPECtrogram:CSCale:MAX?"),
@@ -2520,7 +2520,7 @@ class _RefLevels(Node):
                 continue
             if key not in self._LEVEL_SCPI:
                 raise ValueError(f"unknown reference level {key!r}; valid: {self._LEVEL_KEYS}")
-            self.write(f"{self._prefix}:{kind}:{self._LEVEL_SCPI[key]} {value:g}")
+            self.write(f"{self._prefix}:{kind}:{self._LEVEL_SCPI[key]} {value:.12g}")
         return self._get_levels(kind)
 
     def _get_levels(self, kind: str) -> dict[str, float]:
@@ -2605,7 +2605,7 @@ class _RefLevels(Node):
             - actual hysteresis read back from the scope
         """
         kind = _REFLEVEL_METHOD[method.strip().upper()]
-        self.write(f"{self._prefix}:{kind}:HYSTeresis {value:g}")
+        self.write(f"{self._prefix}:{kind}:HYSTeresis {value:.12g}")
         return self.query_float(f"{self._prefix}:{kind}:HYSTeresis?")
 
     def get_hysteresis(self, method: str = "PERCENT") -> float:
@@ -2700,8 +2700,8 @@ class _Gating(Node):
         1. (start, end) : tuple[float, float]
             - actual window start/end read back from the scope
         """
-        self.write(f"{self._prefix}:STARTtime {start:g}")
-        self.write(f"{self._prefix}:ENDtime {end:g}")
+        self.write(f"{self._prefix}:STARTtime {start:.12g}")
+        self.write(f"{self._prefix}:ENDtime {end:.12g}")
         return (
             self.query_float(f"{self._prefix}:STARTtime?"),
             self.query_float(f"{self._prefix}:ENDtime?"),
@@ -2716,12 +2716,12 @@ class _Gating(Node):
 
     def set_hysteresis(self, value: float) -> float:
         """Set the gating hysteresis; returns the read-back value."""
-        self.write(f"{self._prefix}:HYSTeresis {value:g}")
+        self.write(f"{self._prefix}:HYSTeresis {value:.12g}")
         return self.query_float(f"{self._prefix}:HYSTeresis?")
 
     def set_midref(self, value: float) -> float:
         """Set the gating mid-reference level; returns the read-back value."""
-        self.write(f"{self._prefix}:MIDRef {value:g}")
+        self.write(f"{self._prefix}:MIDRef {value:.12g}")
         return self.query_float(f"{self._prefix}:MIDRef?")
 
     def set_global(self, state: bool) -> bool:
@@ -3821,7 +3821,7 @@ class _Probe(Node):
         1. prange : float
             - actual forced range read back from the scope
         """
-        self.write(f"CH{self._ch}:PRO:FORCEDR {prange:g}")
+        self.write(f"CH{self._ch}:PRO:FORCEDR {prange:.12g}")
         return self.query_float(f"CH{self._ch}:PRO:FORCEDR?")
 
     def cmd_autozero(self) -> None:
@@ -4171,7 +4171,7 @@ class _Reference(Node):
 
     def set_deskew(self, deskew: float) -> float:
         """Set this reference's deskew time in seconds."""
-        self.write(f"REF:REF{self._ref}:DESKew {deskew:g}")
+        self.write(f"REF:REF{self._ref}:DESKew {deskew:.12g}")
         return self.query_float(f"REF:REF{self._ref}:DESKew?")
 
     def get_deskew(self) -> float:
@@ -4219,31 +4219,31 @@ class _Zoom(Node):
     def set_horizontal_scale(self, scale: float, zoom: int = 1, view: int = 1) -> float:
         """Set the zoom horizontal scale (seconds/div); returns readback."""
         p = self._p(zoom, view)
-        self.write(f"{p}:HORizontal:SCALe {scale:g}")
+        self.write(f"{p}:HORizontal:SCALe {scale:.12g}")
         return self.query_float(f"{p}:HORizontal:SCALe?")
 
     def set_horizontal_position(self, position: float, zoom: int = 1, view: int = 1) -> float:
         """Set the zoom horizontal position (percent of record); returns readback."""
         p = self._p(zoom, view)
-        self.write(f"{p}:HORizontal:POSition {position:g}")
+        self.write(f"{p}:HORizontal:POSition {position:.12g}")
         return self.query_float(f"{p}:HORizontal:POSition?")
 
     def set_horizontal_winscale(self, winscale: float, zoom: int = 1, view: int = 1) -> float:
         """Set the zoom window horizontal scale (seconds/div); returns readback."""
         p = self._p(zoom, view)
-        self.write(f"{p}:HORizontal:WINSCALe {winscale:g}")
+        self.write(f"{p}:HORizontal:WINSCALe {winscale:.12g}")
         return self.query_float(f"{p}:HORizontal:WINSCALe?")
 
     def set_vertical_scale(self, scale: float, zoom: int = 1, view: int = 1) -> float:
         """Set the zoom vertical scale; returns readback."""
         p = self._p(zoom, view)
-        self.write(f"{p}:VERTical:SCALe {scale:g}")
+        self.write(f"{p}:VERTical:SCALe {scale:.12g}")
         return self.query_float(f"{p}:VERTical:SCALe?")
 
     def set_vertical_position(self, position: float, zoom: int = 1, view: int = 1) -> float:
         """Set the zoom vertical position; returns readback."""
         p = self._p(zoom, view)
-        self.write(f"{p}:VERTical:POSition {position:g}")
+        self.write(f"{p}:VERTical:POSition {position:.12g}")
         return self.query_float(f"{p}:VERTical:POSition?")
 
     def get_horizontal_scale(self, zoom: int = 1, view: int = 1) -> float:
@@ -4339,8 +4339,8 @@ class _Cursors(Node):
             - actual A/B positions read back from the scope
         """
         p = self._p(cursor, view)
-        self.write(f"{p}:VBArs:APOSition {a:g}")
-        self.write(f"{p}:VBArs:BPOSition {b:g}")
+        self.write(f"{p}:VBArs:APOSition {a:.12g}")
+        self.write(f"{p}:VBArs:BPOSition {b:.12g}")
         return (
             self.query_float(f"{p}:VBArs:APOSition?"),
             self.query_float(f"{p}:VBArs:BPOSition?"),
@@ -4363,8 +4363,8 @@ class _Cursors(Node):
             - actual A/B positions read back from the scope
         """
         p = self._p(cursor, view)
-        self.write(f"{p}:HBArs:APOSition {a:g}")
-        self.write(f"{p}:HBArs:BPOSition {b:g}")
+        self.write(f"{p}:HBArs:APOSition {a:.12g}")
+        self.write(f"{p}:HBArs:BPOSition {b:.12g}")
         return (
             self.query_float(f"{p}:HBArs:APOSition?"),
             self.query_float(f"{p}:HBArs:BPOSition?"),
@@ -4622,7 +4622,7 @@ class _Afg(Node):
             if value is None:
                 continue
             if self.query_float(f"{cmd}?") != float(value):
-                self.write(f"{cmd} {float(value):g}")
+                self.write(f"{cmd} {float(value):.12g}")
 
         if noise_add is not None:
             self._apply_noise(noise_add)
@@ -4636,7 +4636,7 @@ class _Afg(Node):
             return
         percent = float(noise_add)
         if self.query_float("AFG:NOISEAdd:PERCent?") != percent:
-            self.write(f"AFG:NOISEAdd:PERCent {percent:g}")
+            self.write(f"AFG:NOISEAdd:PERCent {percent:.12g}")
         if not self.query_bool("AFG:NOISEAdd:STATE?"):
             self.write("AFG:NOISEAdd:STATE ON")
 
@@ -4868,7 +4868,7 @@ class _Afg(Node):
         Kept public so a loop that steps frequency does not rewrite amplitude
         on every pass. See the design standard, section 5.3.
         """
-        self.write(f"AFG:FREQuency {hz:g}")
+        self.write(f"AFG:FREQuency {hz:.12g}")
         return self.query_float("AFG:FREQuency?")
 
     def get_frequency(self) -> float:
@@ -4877,7 +4877,7 @@ class _Afg(Node):
 
     def set_amplitude(self, volts: float) -> float:
         """Set the output amplitude in volts peak to peak."""
-        self.write(f"AFG:AMPLitude {volts:g}")
+        self.write(f"AFG:AMPLitude {volts:.12g}")
         return self.query_float("AFG:AMPLitude?")
 
     def get_amplitude(self) -> float:
@@ -4886,7 +4886,7 @@ class _Afg(Node):
 
     def set_offset(self, volts: float) -> float:
         """Set the output DC offset in volts."""
-        self.write(f"AFG:OFFSet {volts:g}")
+        self.write(f"AFG:OFFSet {volts:.12g}")
         return self.query_float("AFG:OFFSet?")
 
     def get_offset(self) -> float:
@@ -4899,8 +4899,8 @@ class _Afg(Node):
         This is the alternative to amplitude and offset. Returns the read-back
         pair.
         """
-        self.write(f"AFG:HIGHLevel {high:g}")
-        self.write(f"AFG:LOWLevel {low:g}")
+        self.write(f"AFG:HIGHLevel {high:.12g}")
+        self.write(f"AFG:LOWLevel {low:.12g}")
         return self.get_levels()
 
     def get_levels(self) -> tuple[float, float]:
@@ -4914,12 +4914,12 @@ class _Afg(Node):
 
     def _set_period(self, seconds: float) -> float:
         """Write the output period (AFG:PERIod). Reciprocal of frequency."""
-        self.write(f"AFG:PERIod {seconds:g}")
+        self.write(f"AFG:PERIod {seconds:.12g}")
         return self.query_float("AFG:PERIod?")
 
     def _set_high_level(self, level: float) -> float:
         """Write the waveform high level (AFG:HIGHLevel)."""
-        self.write(f"AFG:HIGHLevel {level:g}")
+        self.write(f"AFG:HIGHLevel {level:.12g}")
         return self.query_float("AFG:HIGHLevel?")
 
     def set_low_level(self, level: float) -> float:
@@ -4932,7 +4932,7 @@ class _Afg(Node):
         1. level : float
             - actual low level read back from the scope
         """
-        self.write(f"AFG:LOWLevel {level:g}")
+        self.write(f"AFG:LOWLevel {level:.12g}")
         return self.query_float("AFG:LOWLevel?")
 
     def get_low_level(self) -> float:
@@ -4941,17 +4941,17 @@ class _Afg(Node):
 
     def _set_square_duty(self, percent: float) -> float:
         """Write the square-wave duty cycle (AFG:SQUare:DUty), 10.0 to 90.0 percent."""
-        self.write(f"AFG:SQUare:DUty {percent:g}")
+        self.write(f"AFG:SQUare:DUty {percent:.12g}")
         return self.query_float("AFG:SQUare:DUty?")
 
     def _set_ramp_symmetry(self, percent: float) -> float:
         """Write the ramp symmetry (AFG:RAMP:SYMmetry), 0.0 to 100.0 percent."""
-        self.write(f"AFG:RAMP:SYMmetry {percent:g}")
+        self.write(f"AFG:RAMP:SYMmetry {percent:.12g}")
         return self.query_float("AFG:RAMP:SYMmetry?")
 
     def _set_pulse_width(self, width: float) -> float:
         """Write the pulse width in seconds (AFG:PULse:WIDth)."""
-        self.write(f"AFG:PULse:WIDth {width:g}")
+        self.write(f"AFG:PULse:WIDth {width:.12g}")
         return self.query_float("AFG:PULse:WIDth?")
 
     def _set_noise_add_state(self, state: bool) -> bool:
@@ -4966,7 +4966,7 @@ class _Afg(Node):
 
     def _set_noise_add_percent(self, percent: float) -> float:
         """Write the additive-noise level (AFG:NOISEAdd:PERCent), 0.0 to 100.0."""
-        self.write(f"AFG:NOISEAdd:PERCent {percent:g}")
+        self.write(f"AFG:NOISEAdd:PERCent {percent:.12g}")
         return self.query_float("AFG:NOISEAdd:PERCent?")
 
     def _set_run_mode(self, mode: AfgOutputMode | str) -> str:

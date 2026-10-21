@@ -28,7 +28,7 @@ def _connect(responses=None):
 def test_set_channel_center_unlocks_then_writes_ch_centerf():
     scope, mock = _connect({"CH5:SV:CENTERF?": "1000000.0"})
     result = scope.ch5.sv.set_channel_center(1e6)
-    assert mock.writes[:2] == ["SV:LOCKC OFF", "CH5:SV:CENTERF 1e+06"]
+    assert mock.writes[:2] == ["SV:LOCKC OFF", "CH5:SV:CENTERF 1000000"]
     assert result == pytest.approx(1e6)
 
 
@@ -37,7 +37,7 @@ def test_set_center_locks_and_writes_ch1_only():
     command from the per-channel set_channel_center)."""
     scope, mock = _connect()
     scope.ch1.sv.set_center(2e6)
-    assert mock.writes == ["SV:LOCKC ON", "CH1:SV:CENTERF 2e+06"]
+    assert mock.writes == ["SV:LOCKC ON", "CH1:SV:CENTERF 2000000"]
 
 
 def test_set_spectrum_time_is_distinct_from_display_position():

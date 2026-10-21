@@ -440,7 +440,7 @@ class Rigol_DL3000(Instrument):
         # AWID/BWID are bounded by the transient period: a small leftover period
         # snaps a large width toward 0 (and queues -220). Widen the period to fit
         # both widths first, then set them (bench-verified 2026-08-10).
-        self.link.write(f":SOUR:CURR:TRAN:PER {(float(width_a) + float(width_b)) * _MS_PER_S:g}")
+        self.link.write(f":SOUR:CURR:TRAN:PER {(float(width_a) + float(width_b)) * _MS_PER_S:.12g}")
         self._setq(":SOUR:CURR:TRAN:AWID", width_a, _MS_PER_S)
         self._setq(":SOUR:CURR:TRAN:BWID", width_b, _MS_PER_S)
         return self.get_transient()
@@ -496,10 +496,10 @@ class Rigol_DL3000(Instrument):
         self.link.write(f":SOUR:LIST:COUN {int(count)}")
         self.link.write(f":SOUR:LIST:STEP {len(levels)}")
         for i, (lvl, wid) in enumerate(zip(levels, widths)):
-            self.link.write(f":SOUR:LIST:LEV {i},{float(lvl):g}")
-            self.link.write(f":SOUR:LIST:WID {i},{float(wid):g}")
+            self.link.write(f":SOUR:LIST:LEV {i},{float(lvl):.12g}")
+            self.link.write(f":SOUR:LIST:WID {i},{float(wid):.12g}")
             if slews is not None:
-                self.link.write(f":SOUR:LIST:SLEW {i},{float(slews[i]) * _AUS_PER_AS:g}")
+                self.link.write(f":SOUR:LIST:SLEW {i},{float(slews[i]) * _AUS_PER_AS:.12g}")
         return int(self.link.query_float(":SOUR:LIST:STEP?"))
 
     def get_list_step(self, index: int) -> tuple[float, float]:
