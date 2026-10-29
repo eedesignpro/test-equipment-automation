@@ -64,7 +64,7 @@ from common.errors import InstrumentError, InstrumentUnresponsiveError
 from common.instrument import Instrument
 from common.node import Node
 from common.scpi import ScpiEnum
-from common.state import BurstState, ModulationState, SweepState, WaveformState
+from common.state import BurstState, ModulationState, SweepState, VoltageLimits, WaveformState
 
 # Generous LAN I/O timeout. The link is fast; this only bounds a hung transfer.
 _DEFAULT_TIMEOUT_MS = 5000
@@ -511,24 +511,6 @@ def _same(present: float, wanted: float, digits: int) -> bool:
     is how the instrument stores them. Equal means no write is needed.
     """
     return f"{present:.{digits}g}" == f"{wanted:.{digits}g}"
-
-
-@dataclass(frozen=True)
-class VoltageLimits:
-    """The clamp on how far the output may swing.
-
-    The limits keep their values when the clamp is switched off, so ``low`` and
-    ``high`` stay meaningful while ``enabled`` is False.
-    """
-
-    low: float
-    """Lowest output voltage allowed, in volts."""
-
-    high: float
-    """Highest output voltage allowed, in volts."""
-
-    enabled: bool
-    """Whether the clamp is in force."""
 
 
 # Internal modulating-waveform shapes (AM/FM/PM/PWM/SUM internal function).

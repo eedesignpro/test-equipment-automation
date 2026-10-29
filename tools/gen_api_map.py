@@ -64,9 +64,27 @@ DRIVERS = [
     ("Keysight E364xA PSU", "drivers.keysight_e364xa", "Keysight_E364xA", "ASRL6::INSTR"),
     ("Keysight 33500 AWG", "drivers.keysight_33522a", "Keysight_33500", "TCPIP::0.0.0.0::INSTR"),
     ("Keysight 33120A siggen", "drivers.keysight_33120a", "Keysight_33120A", "ASRL4::INSTR"),
+    (
+        "Tektronix AFG31000 AFG",
+        "drivers.tektronix_afg31000",
+        "Tektronix_AFG31000",
+        "TCPIP::0.0.0.0::5025::SOCKET",
+    ),
     ("Rigol DL3000 e-load", "drivers.rigol_dl3000", "Rigol_DL3000", "TCPIP::0.0.0.0::INSTR"),
     ("Siglent SDM DMM", "drivers.siglent_sdm", "Siglent_SDM", "TCPIP::0.0.0.0::5025::SOCKET"),
     ("Owon ODP PSU", "drivers.owon_odp", "Owon_ODP", "USB0::0x0000::0x0000::0::INSTR"),
+    (
+        "Siglent SDG3000X AWG",
+        "drivers.siglent_sdg3000x",
+        "Siglent_SDG3000X",
+        "TCPIP::0.0.0.0::INSTR",
+    ),
+    (
+        "Rohde & Schwarz RTB2000 scope",
+        "drivers.rohde_schwarz_rtb2000",
+        "RohdeSchwarz_RTB2000",
+        "TCPIP::0.0.0.0::INSTR",
+    ),
 ]
 
 # A SCPI command leaked into a public summary line. A bare colon is NOT the
@@ -339,7 +357,7 @@ def build_all() -> tuple[dict[Path, str], list[tuple[str, str, int, int]]]:
     total_methods = sum(c for _, _, c, _ in stats)
     total_size = sum(s for _, _, _, s in stats)
     index += [
-        f"| **all eight** | | **{total_methods}** | **{total_size // 4}** |",
+        f"| **all {len(stats)}** | | **{total_methods}** | **{total_size // 4}** |",
         "",
         "Naming rules and the reasoning behind them are in",
         "[`driver-api-design.md`](driver-api-design.md).",
@@ -380,7 +398,7 @@ def main() -> int:
     biggest = max(s[3] for s in stats) // 4
     total = sum(s[3] for s in stats) // 4
     print(f"\nlargest single instrument: {biggest} tokens")
-    print(f"all eight combined:        {total} tokens")
+    print(f"all {len(stats)} combined:            {total} tokens")
 
     print(f"\ncontract gaps: {len(gaps)}")
     by_kind: dict[str, int] = {}

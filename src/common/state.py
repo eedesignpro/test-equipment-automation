@@ -88,7 +88,13 @@ class WaveformState:
     """Pulse width in seconds."""
 
     edge_time: float | None = None
-    """Pulse or PRBS edge transition time in seconds."""
+    """Pulse or PRBS edge transition time in seconds; the leading edge where the two differ."""
+
+    trailing_edge_time: float | None = None
+    """Pulse trailing edge in seconds, on a generator that sets the edges apart."""
+
+    delay: float | None = None
+    """Pulse lead delay in seconds, from the start of the period to the leading edge."""
 
     sample_rate: float | None = None
     """Arbitrary-waveform sample rate in samples per second."""
@@ -99,8 +105,27 @@ class WaveformState:
     noise_add: float | None = None
     """Additive noise in percent. None when additive noise is off.
 
-    Scope AFG only. The two bench generators have no additive noise.
+    The scope AFG and the AFG31000 have it; the 33120A and the 33522A do not.
     """
+
+
+@dataclass(frozen=True)
+class VoltageLimits:
+    """The clamp on how far a signal source's output may swing.
+
+    The limits keep their values when the clamp is switched off, so ``low`` and
+    ``high`` stay meaningful while ``enabled`` is False. A generator whose clamp
+    has no off switch, such as the AFG31000, always reports True.
+    """
+
+    low: float
+    """Lowest output voltage allowed, in volts."""
+
+    high: float
+    """Highest output voltage allowed, in volts."""
+
+    enabled: bool
+    """Whether the clamp is in force."""
 
 
 @dataclass(frozen=True)
@@ -184,3 +209,9 @@ class BurstState:
     None on a generator that does not separate the two, such as the 33120A,
     where the burst source doubles as the mode.
     """
+
+    delay: float | None = None
+    """Time from the trigger to the first cycle, in seconds. None where unsupported."""
+
+    idle: ScpiEnum | None = None
+    """What the output holds between bursts. None where the generator has no choice."""

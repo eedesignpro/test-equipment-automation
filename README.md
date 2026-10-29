@@ -44,6 +44,9 @@ Other models in a family are in the class's model table but are not tested.
 | Rigol DL3000 electronic loads | `Rigol_DL3000` | `drivers.rigol_dl3000` | DL30xx | DL3021A |
 | Siglent SDM4000A digital multimeters | `Siglent_SDM` | `drivers.siglent_sdm` | SDM4055A, SDM4065A | SDM4065A |
 | OWON ODP DC power supplies | `Owon_ODP` | `drivers.owon_odp` | ODP series | ODP6033 |
+| Tektronix AFG31000 function generators | `Tektronix_AFG31000` | `drivers.tektronix_afg31000` | AFG31000 series | AFG31102 |
+| Siglent SDG3000X waveform generators | `Siglent_SDG3000X` | `drivers.siglent_sdg3000x` | SDG3082X, SDG3162X, SDG3202X | SDG3202X, under earlier method names |
+| Rohde & Schwarz RTB2000 oscilloscopes | `RohdeSchwarz_RTB2000` | `drivers.rohde_schwarz_rtb2000` | RTB2002, RTB2004 | RTB2004, under earlier method names |
 
 Tested platform: Windows 11, Python 3.14. Other platforms and Python versions
 are not tested.
@@ -133,8 +136,11 @@ not include them. Get them from each vendor's website.
 | Rigol DL3000 | DL3000 Series Programming Guide |
 | Siglent SDM4000A | SDM4000A Remote Manual |
 | OWON ODP | ODP Series Power Supply Programming Manual |
+| Tektronix AFG31000 | AFG31000 Series Programmer Manual |
+| Siglent SDG3000X | SDG3000X Series Programming Guide |
+| Rohde & Schwarz RTB2000 | R&S RTB2000 User Manual, remote control chapter |
 
-This project is not affiliated with Tektronix, Keysight, Agilent, Rigol,
+This project is not affiliated with Tektronix, Keysight, Agilent, Rigol, Rohde & Schwarz,
 Siglent, or OWON. Their names appear only to say which instruments the code
 controls.
 

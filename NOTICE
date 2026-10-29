@@ -6,3 +6,7 @@ See the LICENSE file.
 
 SeeScan, Inc. publishes this code as-is. SeeScan, Inc. does not support
 or maintain it.
+
+Portions copyright 2026 Tyler Richard: src/drivers/siglent_sdg3000x.py,
+src/drivers/rohde_schwarz_rtb2000.py, and their tests, test fakes and
+quirk records. Licensed under the Apache License, Version 2.0.

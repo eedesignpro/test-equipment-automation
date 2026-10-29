@@ -12,10 +12,13 @@ instrument, so a script that drives the scope pays nothing for the DMM.
 | Keysight E364xA PSU | [`api-map/keysight_e364xa.md`](api-map/keysight_e364xa.md) | 78 | 2527 |
 | Keysight 33500 AWG | [`api-map/keysight_33522a.md`](api-map/keysight_33522a.md) | 278 | 9693 |
 | Keysight 33120A siggen | [`api-map/keysight_33120a.md`](api-map/keysight_33120a.md) | 139 | 4705 |
+| Tektronix AFG31000 AFG | [`api-map/tektronix_afg31000.md`](api-map/tektronix_afg31000.md) | 100 | 4412 |
 | Rigol DL3000 e-load | [`api-map/rigol_dl3000.md`](api-map/rigol_dl3000.md) | 65 | 2309 |
 | Siglent SDM DMM | [`api-map/siglent_sdm.md`](api-map/siglent_sdm.md) | 137 | 4583 |
 | Owon ODP PSU | [`api-map/owon_odp.md`](api-map/owon_odp.md) | 32 | 1276 |
-| **all eight** | | **1285** | **44498** |
+| Siglent SDG3000X AWG | [`api-map/siglent_sdg3000x.md`](api-map/siglent_sdg3000x.md) | 374 | 13845 |
+| Rohde & Schwarz RTB2000 scope | [`api-map/rohde_schwarz_rtb2000.md`](api-map/rohde_schwarz_rtb2000.md) | 239 | 9548 |
+| **all 11** | | **1998** | **72304** |
 
 Naming rules and the reasoning behind them are in
 [`driver-api-design.md`](driver-api-design.md).
