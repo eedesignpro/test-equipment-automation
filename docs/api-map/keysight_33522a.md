@@ -111,7 +111,7 @@ set_sync_mode(mode: 'SyncMode | str') -> 'SyncMode'                     Set what
 set_sync_polarity(polarity: 'Polarity | str') -> 'Polarity'             Set the Sync pulse polarity for this channel; a :class:`Polarity`.
 set_voltage_limits(low: 'float', high: 'float') -> "'VoltageLimits'"    Clamp the output between ``low`` and ``high`` volts, and turn the clamp on.
 set_voltage_limits_off() -> "'VoltageLimits'"                           Stop clamping the output, leaving the limit values where they are.
-set_waveform_arb(samples: 'Sequence[float] | None', *, sample_rate: 'float', ampl: 'float', offset: 'float' = 0.0, name: 'str' = 'VOLATILE', arb_filter: "'ArbFilter | str | None'" = None) -> 'WaveformState'  Play ``samples`` back at ``sample_rate`` samples per second.
+set_waveform_arb(samples: 'Sequence[float] | None', *, sample_rate: 'float', ampl: 'float', offset: 'float' = 0.0, name: 'str' = 'DRV_ARB', arb_filter: "'ArbFilter | str | None'" = None) -> 'WaveformState'  Play ``samples`` back at ``sample_rate`` samples per second.
 set_waveform_dc(offset: 'float') -> 'WaveformState'                     Output a steady level of ``offset`` volts.
 set_waveform_noise(ampl: 'float', *, offset: 'float' = 0.0, bandwidth: 'float | None' = None) -> 'WaveformState'  Output gaussian noise at ``ampl`` volts peak to peak.
 set_waveform_prbs(bit_rate: 'float', ampl: 'float', *, offset: 'float' = 0.0, sequence: "'PrbsSequence | str | None'" = None, edge_time: 'float | None' = None) -> 'WaveformState'  Output a pseudo-random bit stream at ``bit_rate`` bits per second.

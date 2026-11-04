@@ -7,7 +7,7 @@ instrument, so a script that drives the scope pays nothing for the DMM.
 
 | Instrument | File | Methods | Approx tokens |
 |---|---|---|---|
-| Tektronix MSO 4/5/6 | [`api-map/tektronix_mso.md`](api-map/tektronix_mso.md) | 409 | 14294 |
+| Tektronix MSO 4/5/6 | [`api-map/tektronix_mso.md`](api-map/tektronix_mso.md) | 410 | 14337 |
 | Keysight B2900 SMU | [`api-map/keysight_b2900.md`](api-map/keysight_b2900.md) | 147 | 5107 |
 | Keysight E364xA PSU | [`api-map/keysight_e364xa.md`](api-map/keysight_e364xa.md) | 78 | 2527 |
 | Keysight 33500 AWG | [`api-map/keysight_33522a.md`](api-map/keysight_33522a.md) | 278 | 9693 |
@@ -18,7 +18,7 @@ instrument, so a script that drives the scope pays nothing for the DMM.
 | Owon ODP PSU | [`api-map/owon_odp.md`](api-map/owon_odp.md) | 32 | 1276 |
 | Siglent SDG3000X AWG | [`api-map/siglent_sdg3000x.md`](api-map/siglent_sdg3000x.md) | 374 | 13845 |
 | Rohde & Schwarz RTB2000 scope | [`api-map/rohde_schwarz_rtb2000.md`](api-map/rohde_schwarz_rtb2000.md) | 239 | 9548 |
-| **all 11** | | **1998** | **72304** |
+| **all 11** | | **1999** | **72346** |
 
 Naming rules and the reasoning behind them are in
 [`driver-api-design.md`](driver-api-design.md).

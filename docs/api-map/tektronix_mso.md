@@ -227,6 +227,7 @@ get_start() -> int                                                      Query th
 get_stop() -> int                                                       Query the last data point transferred by CURVe?.
 get_time_axis(preamble: dict | None = None) -> numpy.ndarray            Return the time axis (seconds) for the most recent transfer.
 get_waveform(source: str | None = None, width: int = 1) -> numpy.ndarray  Transfer a full waveform record straight from memory into a numpy array.
+get_waveform_codes(source: str | None = None, width: int = 2) -> tuple[numpy.ndarray, dict]  Transfer a full record as the scope's own integer codes, with its preamble.
 get_width() -> int                                                      Query the byte width per data point.
 set_encoding(encoding: drivers.tektronix_mso.enums.DataEncoding | str) -> str  Set the CURVe? data encoding.
 set_frame_start(frame: int) -> int                                      Set the first FastFrame frame transferred by CURVe? (segmented readout).

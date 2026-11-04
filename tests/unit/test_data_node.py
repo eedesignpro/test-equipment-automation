@@ -134,3 +134,28 @@ def test_get_time_axis_matches_bench_preamble_xincr_xzero():
     time_axis = scope.data.get_time_axis(preamble)
     expected = 1.6e-10 + 1.6e-10 * (np.arange(4) - 0)
     np.testing.assert_allclose(time_axis, expected)
+
+
+def test_get_waveform_codes_returns_16_bit_codes_unchanged_with_preamble():
+    """width=2: big-endian int16 codes come back exactly, in native byte order."""
+    responses = dict(_BENCH_PREAMBLE_RESPONSES)
+    responses.update(
+        {
+            "WFMOutpre:BYT_Nr?": "2",
+            "WFMOutpre:BIT_Nr?": "16",
+            "DATa:SOUrce?": "CH5",
+            "DATa:ENCdg?": "RIBinary",
+            "DATa:WIDth?": "2",
+            "HOR:RECO?": "4",
+            "WFMOutpre:YMUlt?": "7.8125E-5",
+        }
+    )
+    scope, mock = _connect(responses)
+    raw = np.array([-32000, -1, 0, 31999], dtype=">i2")
+    mock.queue_read(_binary_block(raw.tobytes()))
+
+    codes, pre = scope.data.get_waveform_codes(source="CH5", width=2)
+
+    assert codes.dtype == np.int16 and codes.dtype.byteorder in ("=", "|", "<")
+    np.testing.assert_array_equal(codes, raw.astype(np.int16))
+    assert pre["ymult"] == 7.8125e-5 and pre["byt_nr"] == 2

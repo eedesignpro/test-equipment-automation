@@ -4044,22 +4044,25 @@ class _Data(Node):
         width = preamble.get("byt_nr", 1)
         return np.dtype(f"{endian}{code}{width}")
 
-    def get_waveform(self, source: str | None = None, width: int = 1) -> np.ndarray:
-        """Transfer a full waveform record straight from memory into a numpy array.
+    def get_waveform_codes(
+        self, source: str | None = None, width: int = 2
+    ) -> tuple[np.ndarray, dict]:
+        """Transfer a full record as the scope's own integer codes, with its preamble.
 
-        Sets the source (if given), forces signed binary encoding, transfers
-        the whole record with ``CURVe?`` and scales the raw codes to physical
-        units via the ``WFMOutpre?`` preamble:
-        ``y = YZEro + YMUlt * (raw - YOFf)``.
+        Nothing is scaled or rounded: the codes are exactly what the scope
+        digitized, as 8-bit (``width=1``) or 16-bit (``width=2``) signed
+        integers. Volts are ``yzero + ymult * (code - yoff)`` and the time axis
+        is ``xzero + xincr * (n - pt_off)``, both from the returned preamble
+        (see :meth:`get_time_axis`). Save these to keep a record lossless.
 
         ### Parameters
         1. source : str (default None)
             - waveform source token (e.g. ``CH5``); None keeps the current source
-        2. width : int (default 1)
+        2. width : int (default 2)
             - bytes per data point (1 or 2)
         ### Returns
-        1. samples : numpy.ndarray
-            - the scaled waveform in the preamble's vertical units
+        1. (codes, preamble) : tuple[numpy.ndarray, dict]
+            - integer codes in their native width, and the WFMOutpre fields
         """
         if source is not None:
             self.set_source(source)
@@ -4072,11 +4075,29 @@ class _Data(Node):
         with self.link.temporary_timeout(self._MAX_TRANSFER_TIMEOUT_MS):
             self.write("CURVe?")
             block = self.read_binary_block()
-        raw = np.frombuffer(block, dtype=self._dtype(preamble)).astype(np.float64)
-        ymult = preamble.get("ymult", 1.0)
-        yoff = preamble.get("yoff", 0.0)
-        yzero = preamble.get("yzero", 0.0)
-        return yzero + ymult * (raw - yoff)
+        codes = np.frombuffer(block, dtype=self._dtype(preamble))
+        return codes.astype(codes.dtype.newbyteorder("=")), preamble
+
+    def get_waveform(self, source: str | None = None, width: int = 1) -> np.ndarray:
+        """Transfer a full waveform record straight from memory into a numpy array.
+
+        Sets the source (if given), forces signed binary encoding, transfers
+        the whole record with ``CURVe?`` and scales the raw codes to physical
+        units via the ``WFMOutpre?`` preamble:
+        ``y = YZEro + YMUlt * (raw - YOFf)``. :meth:`get_waveform_codes` returns
+        the unscaled codes and the preamble instead.
+
+        ### Parameters
+        1. source : str (default None)
+            - waveform source token (e.g. ``CH5``); None keeps the current source
+        2. width : int (default 1)
+            - bytes per data point (1 or 2)
+        ### Returns
+        1. samples : numpy.ndarray
+            - the scaled waveform in the preamble's vertical units
+        """
+        codes, preamble = self.get_waveform_codes(source, width)
+        return scale_codes(codes, preamble)
 
     def get_time_axis(self, preamble: dict | None = None) -> np.ndarray:
         """Return the time axis (seconds) for the most recent transfer.
@@ -4095,6 +4116,14 @@ class _Data(Node):
         xzero = preamble.get("xzero", 0.0)
         pt_off = preamble.get("pt_off", 0)
         return xzero + xincr * (np.arange(n, dtype=np.float64) - pt_off)
+
+
+def scale_codes(codes: np.ndarray, preamble: dict) -> np.ndarray:
+    """Scope integer codes to physical units: ``yzero + ymult * (code - yoff)``."""
+    ymult = preamble.get("ymult", 1.0)
+    yoff = preamble.get("yoff", 0.0)
+    yzero = preamble.get("yzero", 0.0)
+    return yzero + ymult * (np.asarray(codes, dtype=np.float64) - yoff)
 
 
 class _Reference(Node):

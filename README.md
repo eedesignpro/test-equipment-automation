@@ -59,12 +59,13 @@ Until the first release, install from a clone:
 git clone <this repository>
 cd test-equipment-automation
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install pyvisa pyvisa-py numpy
+.venv/Scripts/python.exe -m pip install pyvisa-py
 .venv/Scripts/python.exe -m pip install -e .
 ```
 
 On Linux or macOS, use `.venv/bin/python` in place of `.venv/Scripts/python.exe`.
 
+The install pulls in pyvisa, numpy, scipy and matplotlib.
 `pyvisa-py` is a VISA backend written in Python. If your computer already has
 a vendor VISA library, such as Keysight IO Libraries or NI-VISA, pyvisa uses it
 and `pyvisa-py` is optional.
@@ -94,6 +95,30 @@ when one of them is off.
 Each module docstring has short recipes for common tasks. The method list for
 each instrument is in `docs/api-map/`.
 
+## Frequency sweeps
+
+`src/sweep` runs Bode-style and drive-level sweeps from any source and any
+measuring instrument. A source is anything that sets a frequency; a
+measurement is anything that measures. Ready-made parts cover each driver
+above. Every run writes a folder with the data, the waveforms, plots, a
+condensed table and a short review, so the run can be analyzed again with no
+instrument attached. `docs/frequency-sweep.md` is the guide. It also gives
+the best use and the blind spots of each analysis method.
+
+```python
+from sweep.run import run_sweep
+from sweep.plan import frequencies
+from sweep.simulate import SimulatedBench, rc_lowpass
+
+bench = SimulatedBench({"in": lambda f: 1.0, "out": rc_lowpass(1e3, 159e-9)})
+run_sweep(frequencies(100, 1e5, points_per_decade=10), bench.source(),
+          [bench.receiver()], amplitude=1.0,
+          expressions={"H": lambda v: v["out"] / v["in"]}, folder="runs")
+```
+
+The simulated bench needs no hardware. On a real bench, replace it with a
+source and a receiver from `sweep.instruments`.
+
 ## How the methods are named
 
 | Prefix | Meaning | Example |
@@ -115,6 +140,7 @@ single-channel SMU has no `ch2`.
 | `docs/hardware-not-software.md` | Why instrument control code differs from ordinary code. Read it first. |
 | `docs/driver-api-design.md` | The standard every instrument class follows. Read it before you change a class. |
 | `docs/api-map.md` | An index to one method list per instrument. |
+| `docs/frequency-sweep.md` | The frequency sweep guide: running, stopping, capture rules, methods and their blind spots. |
 
 Some comments and documents cite design records by number, such as ADR-042.
 Those records are kept in the original internal repository and are not part of

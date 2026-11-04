@@ -2016,10 +2016,15 @@ class _Channel(Node):
         sample_rate: float,
         ampl: float,
         offset: float = 0.0,
-        name: str = "VOLATILE",
+        name: str = "DRV_ARB",
         arb_filter: "ArbFilter | str | None" = None,
     ) -> WaveformState:
         """Play ``samples`` back at ``sample_rate`` samples per second.
+
+        ``name`` must not be ``VOLATILE``: on the bench 33522A (fw 3.05,
+        2026-11-03) an upload under that name left the selected 250-point
+        waveform in place and raised no error, while any other name loaded every
+        point. The 33120A, unlike this model, does use ``VOLATILE``.
 
         Enum arg: <awg>.ArbFilter.<TAB>
 
@@ -2029,6 +2034,8 @@ class _Channel(Node):
         frequency is ``sample_rate`` divided by the number of points.
         """
         if samples is not None:
+            if name.strip().upper() == "VOLATILE":
+                raise ValueError("arb name VOLATILE does not load on this model; use another name")
             self.arb.set_data_floats(name, samples)
             self.arb.set_selected(name)
         if self._get_function() is not Function.ARBITRARY:
