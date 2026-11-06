@@ -940,6 +940,14 @@ def test_fft_set_range_sets_the_rbw_ratio_after_the_range(make_scope, monkeypatc
     assert writes.index("SPEC:FREQ:BAND:RES:RAT 1024") > centre
 
 
+def test_counter_ignores_a_result_near_zero(make_scope, monkeypatch):
+    """MEAS 2026-11-05: the counter read 1.29e-217 right after a mode change."""
+    scope, _ = make_scope()
+    monkeypatch.setattr(scope.counter, "_qf", lambda query: 1.29e-217)
+    with pytest.raises(InstrumentError, match="no valid result"):
+        scope.counter.meas_frequency("ch1", timeout=0.0)
+
+
 def test_fft_set_range_raises_if_the_range_never_reads_back(make_scope, monkeypatch):
     scope, fake = make_scope()
     scope.fft.set_source("ch1")

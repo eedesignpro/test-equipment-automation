@@ -32,9 +32,12 @@ repository (the original repository), rebuilt on ``common`` and renamed to the
 driver standard. Every bench fact below carries the quirk ID it had there
 (SDG-nn). The records are in ``docs/quirks/sdg3000x.md`` and ``.jsonl``. They
 were observed on an SDG3202X, firmware 1.1.1.7R10 and R12, under the old
-method names. The SCPI each method sends is unchanged by the port, but every
-renamed method is UNVERIFIED on hardware until the bench checks are rerun
-under the new names. Sources cited as: PG = programming guide EN01A, UM = user
+method names. The port kept the SCPI each method sends. A rerun under these
+names on 2026-11-05, SDG3202X firmware 1.1.1.7R12: every ``get_`` with no
+required argument, the write-back of each ``set_`` that has a matching ``get_``
+(tools/api_sweep.py), and signal checks on a scope of the basic shapes,
+modulation, chirp, burst, hopping, multitone, multipulse, sequence, IQ, phase
+and coupling. Absolute output level was not checked in that rerun. Sources cited as: PG = programming guide EN01A, UM = user
 manual EN01A, DS = data sheet EN01C, MEAS = a bench measurement in the original
 repository.
 
@@ -68,7 +71,6 @@ import hashlib
 import io
 import math
 import re
-import struct
 import tarfile
 import time
 import warnings
@@ -112,6 +114,7 @@ _TOLERANCE = 1e-3
 # long for *RST and a setup recall, and 60 s after an arb upload.
 _RESET_TIMEOUT_S = 30.0
 _UPLOAD_TIMEOUT_S = 60.0
+_SEQUENCE_RUN_TIMEOUT_MS = 60_000
 _ERROR_QUEUE_DRAIN = 50
 
 # The counter makes about 0.6 measurements per second, and remote queries
@@ -2836,7 +2839,9 @@ class _Sequence(_SdgNode):
 
     def set_run_state(self, state: bool) -> bool:
         """Start or stop the sequence; returns the read-back. Raises if a start does not take."""
-        self._w(f"STATE {'RUN' if state else 'STOP'}")
+        # MEAS 2026-11-05: the start of a 15 Mpoint sequence holds *OPC? beyond the 3 s default.
+        with self.link.temporary_timeout(_SEQUENCE_RUN_TIMEOUT_MS):
+            self._w(f"STATE {'RUN' if state else 'STOP'}")
         got = self.get_run_state()
         if state and not got:
             raise InstrumentError(f"{self.name} did not start")
@@ -3251,7 +3256,9 @@ class _Channel(_SdgNode):
         Raises if the output reads off after an on, which overvoltage
         protection causes (UM p.99).
         """
-        self.link.write_checked(f"{self._c}:OUTP {_on_off(state)}")
+        # MEAS 2026-11-05: with a 15 Mpoint sequence loaded, this takes 2.2 s against the 3 s default.
+        with self.link.temporary_timeout(_SEQUENCE_RUN_TIMEOUT_MS):
+            self.link.write_checked(f"{self._c}:OUTP {_on_off(state)}")
         got = self.get_output_state()
         if got != state:
             hint = " Check the overvoltage protection (UM p.99)." if state else ""
@@ -5855,7 +5862,8 @@ class Siglent_SDG3000X(Instrument):
 
     def set_output_state_all(self, state: bool) -> list[bool]:
         """Turn both outputs on or off in one command, like the front panel; returns each read-back."""
-        self.link.write_checked(f"OUT_BOTHCH {_on_off(state)}")
+        with self.link.temporary_timeout(_SEQUENCE_RUN_TIMEOUT_MS):
+            self.link.write_checked(f"OUT_BOTHCH {_on_off(state)}")
         got = self.get_output_state_all()
         bad = [n for n, on in enumerate(got, 1) if on != state]
         if bad:
