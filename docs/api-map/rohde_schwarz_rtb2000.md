@@ -191,6 +191,7 @@ set_slot_state(n: 'int', state: 'bool') -> 'bool'                       Turn vol
 ```
 get_settings() -> 'FftSettings'                                         The FFT source, window, scale, span and resolution bandwidth.
 get_spectrum() -> 'tuple[np.ndarray, np.ndarray]'                       Read the spectrum as (frequency in Hz, magnitude in the set scale).
+set_range(start: 'float', stop: 'float', *, rbw_ratio: 'int | None' = None) -> 'FftSettings'  Set the frequency range in Hz; returns the read-back with the RBW it gives.
 set_source(source: 'str', *, window: 'FftWindow | str' = <FftWindow.HANNING: 'HANN'>, scale: 'FftScale | str' = <FftScale.DBV: 'DBV'>) -> 'FftSettings'  Show the FFT of ``source`` with ``window`` and ``scale``; returns the read-back.
 set_state(state: 'bool') -> 'bool'                                      Show or hide the FFT; returns the read-back.
 ```

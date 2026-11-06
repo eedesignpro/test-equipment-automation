@@ -45,8 +45,8 @@ Other models in a family are in the class's model table but are not tested.
 | Siglent SDM4000A digital multimeters | `Siglent_SDM` | `drivers.siglent_sdm` | SDM4055A, SDM4065A | SDM4065A |
 | OWON ODP DC power supplies | `Owon_ODP` | `drivers.owon_odp` | ODP series | ODP6033 |
 | Tektronix AFG31000 function generators | `Tektronix_AFG31000` | `drivers.tektronix_afg31000` | AFG31000 series | AFG31102 |
-| Siglent SDG3000X waveform generators | `Siglent_SDG3000X` | `drivers.siglent_sdg3000x` | SDG3082X, SDG3162X, SDG3202X | SDG3202X, under earlier method names |
-| Rohde & Schwarz RTB2000 oscilloscopes | `RohdeSchwarz_RTB2000` | `drivers.rohde_schwarz_rtb2000` | RTB2002, RTB2004 | RTB2004, under earlier method names |
+| Siglent SDG3000X waveform generators | `Siglent_SDG3000X` | `drivers.siglent_sdg3000x` | SDG3082X, SDG3162X, SDG3202X | SDG3202X |
+| Rohde & Schwarz RTB2000 oscilloscopes | `RohdeSchwarz_RTB2000` | `drivers.rohde_schwarz_rtb2000` | RTB2002, RTB2004 | RTB2004 |
 
 Tested platform: Windows 11, Python 3.14. Other platforms and Python versions
 are not tested.
@@ -59,14 +59,14 @@ Until the first release, install from a clone:
 git clone <this repository>
 cd test-equipment-automation
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install pyvisa-py
+.venv/Scripts/python.exe -m pip install pyvisa-py pyserial
 .venv/Scripts/python.exe -m pip install -e .
 ```
 
 On Linux or macOS, use `.venv/bin/python` in place of `.venv/Scripts/python.exe`.
 
 The install pulls in pyvisa, numpy, scipy and matplotlib.
-`pyvisa-py` is a VISA backend written in Python. If your computer already has
+`pyvisa-py` is a VISA backend written in Python. It needs `pyserial` for `ASRL` addresses. If your computer already has
 a vendor VISA library, such as Keysight IO Libraries or NI-VISA, pyvisa uses it
 and `pyvisa-py` is optional.
 
