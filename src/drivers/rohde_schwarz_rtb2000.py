@@ -2527,6 +2527,9 @@ class _Search(_RtbNode):
         return self._set_bool("SEAR:STAT", state)
 
 
+_FFT_RANGE_ROUNDS = 8  # MEAS 2026-10-18: the range opens up within a few rounds
+
+
 class _Fft(_RtbNode):
     """The scope FFT (UM p.408-418).
 
@@ -2561,6 +2564,39 @@ class _Fft(_RtbNode):
             stop=self._qf("SPEC:FREQ:STOP?"),
             rbw=self._qf("SPEC:FREQ:BAND?"),
         )
+
+    def set_range(self, start: float, stop: float, *, rbw_ratio: int | None = None) -> FftSettings:
+        """Set the frequency range in Hz; returns the read-back with the RBW it gives.
+
+        The scope sets its timebase from the FFT range. Each write clamps to what
+        the present timebase allows and moves the timebase, so the range opens up
+        over a few rounds (MEAS 2026-10-18, RTB-13). A -222 inside a round is
+        expected; the read-back after the rounds decides. ``rbw_ratio`` is span /
+        RBW (1024 gives RBW 16.6 Hz on a 17 kHz span).
+        """
+        span, centre = float(stop - start), float(start + stop) / 2
+        tolerance = 1e-3 * span
+
+        def reached(got: FftSettings) -> bool:
+            return abs(got.start - start) <= tolerance and abs(got.stop - stop) <= tolerance
+
+        for _ in range(_FFT_RANGE_ROUNDS):
+            self.link.write(f"SPEC:FREQ:SPAN {_num(span)}")
+            self.link.write(f"SPEC:FREQ:CENT {_num(centre)}")
+            self.link.drain_errors()
+            got = self.get_settings()
+            if reached(got):
+                break
+        if rbw_ratio is not None:  # after the range: the rounds reset the RBW
+            self._w("SPEC:FREQ:BAND:RES:AUTO OFF")
+            self._w(f"SPEC:FREQ:BAND:RES:RAT {int(rbw_ratio)}")
+            got = self.get_settings()
+        if not reached(got):
+            raise InstrumentError(
+                f"{self.name}: FFT range reads {got.start:g}..{got.stop:g} Hz, "
+                f"requested {start:g}..{stop:g}"
+            )
+        return got
 
     def get_spectrum(self) -> tuple[np.ndarray, np.ndarray]:
         """Read the spectrum as (frequency in Hz, magnitude in the set scale)."""

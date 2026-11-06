@@ -894,3 +894,55 @@ def test_records_are_frozen():
     for record in (ChannelSettings, Capture, BusFrame, MeasStatistics, HistorySettings):
         assert dataclasses.is_dataclass(record)
         assert record.__dataclass_params__.frozen, record.__name__
+
+
+# ---- FFT range (RTB-13) ----------------------------------------------------------------------
+
+
+def _fft_opens_up(monkeypatch, fake, rounds_needed):
+    """The range reaches the request only on round ``rounds_needed`` (MEAS 2026-10-18)."""
+    write = fake.write
+    fake.s["SPEC:FREQ:STAR"] = "0"
+    fake.s["SPEC:FREQ:STOP"] = "2.86E+06"
+    state = {"round": 0, "span": 0.0}
+
+    def fake_write(cmd, **kwargs):
+        head, _, val = cmd.partition(" ")
+        if head == "SPEC:FREQ:SPAN":
+            state["span"] = float(val)
+        elif head == "SPEC:FREQ:CENT":
+            state["round"] += 1
+            if state["round"] >= rounds_needed:
+                fake.s["SPEC:FREQ:STAR"] = str(float(val) - state["span"] / 2)
+                fake.s["SPEC:FREQ:STOP"] = str(float(val) + state["span"] / 2)
+        return write(cmd, **kwargs)
+
+    monkeypatch.setattr(fake, "write", fake_write)
+    return state
+
+
+def test_fft_set_range_repeats_until_the_range_reads_back(make_scope, monkeypatch):
+    scope, fake = make_scope()
+    scope.fft.set_source("ch1")
+    state = _fft_opens_up(monkeypatch, fake, rounds_needed=3)
+    got = scope.fft.set_range(45e3, 62e3)
+    assert state["round"] == 3 and got.start == 45e3 and got.stop == 62e3
+
+
+def test_fft_set_range_sets_the_rbw_ratio_after_the_range(make_scope, monkeypatch):
+    scope, fake = make_scope()
+    scope.fft.set_source("ch1")
+    _fft_opens_up(monkeypatch, fake, rounds_needed=1)
+    fake.log.clear()
+    scope.fft.set_range(45e3, 62e3, rbw_ratio=1024)
+    writes = [c for c in fake.log if c.startswith("SPEC:FREQ:")]
+    centre = next(i for i, c in enumerate(writes) if c.startswith("SPEC:FREQ:CENT"))
+    assert writes.index("SPEC:FREQ:BAND:RES:RAT 1024") > centre
+
+
+def test_fft_set_range_raises_if_the_range_never_reads_back(make_scope, monkeypatch):
+    scope, fake = make_scope()
+    scope.fft.set_source("ch1")
+    _fft_opens_up(monkeypatch, fake, rounds_needed=99)
+    with pytest.raises(InstrumentError, match="FFT range reads"):
+        scope.fft.set_range(45e3, 62e3)

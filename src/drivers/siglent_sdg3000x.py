@@ -76,6 +76,7 @@ from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, replace
 from typing import TypeVar, cast
 
+import numpy as np
 import pyvisa as visa
 
 from common.errors import (
@@ -2689,7 +2690,9 @@ class _Sequence(_SdgNode):
 
         Run modes (MEAS 2026-10-15): TRIGGERED waits for the first trigger and
         then plays on; BURST plays ``burst_count`` passes ``burst_period`` apart
-        per trigger; STEP plays one segment per trigger; ADVANCED plays the
+        per trigger, ignores a trigger inside a pass and re-arms about 13 us
+        after a pass, so a retriggered burst never chains without a gap (SDG-36;
+        for a gapless loop use TRIGGERED or CONTINUOUS); STEP plays one segment per trigger; ADVANCED plays the
         chain, and a segment with a ``wait`` holds until its event. The output
         is not turned on. Whether the amplitude limit applies in this mode was
         never observed  # UNVERIFIED
@@ -2720,10 +2723,12 @@ class _Sequence(_SdgNode):
         self.set_run_state(False)
         self.set_sample_rate(sample_rate)
         self.set_run_mode(mode if mode in self._SCPI_RUN else RunMode.CONTINUOUS)
+        source_set = None
+        edge_set = None
         if mode is not RunMode.CONTINUOUS:
-            self.set_trigger_source(trigger_source)
+            source_set = self.set_trigger_source(trigger_source)
         if trigger_edge is not None:
-            self.set_trigger_edge(trigger_edge)
+            edge_set = self.set_trigger_edge(trigger_edge)
         self.set_interpolation(interpolation)
         self.set_offset(offset)
         user = set(self._ch._sdg.get_arb_names_user())
@@ -2740,6 +2745,18 @@ class _Sequence(_SdgNode):
             self.set_segment(1, first)
         else:
             self._load_file(segments, mode, name, user)
+            # MEAS 2026-10-18: after the load the trigger source reads the file's
+            # value, not the one set before the load (SDG-37). Set both again.
+            if source_set is not None and self.set_trigger_source(trigger_source) is not source_set:
+                raise InstrumentError(
+                    f"{self.name}: trigger source reads {self.get_trigger_source().name} "
+                    f"after the file load, requested {source_set.name}"
+                )
+            if edge_set is not None and self.set_trigger_edge(trigger_edge) is not edge_set:
+                raise InstrumentError(
+                    f"{self.name}: trigger edge reads {self.get_trigger_edge().name} "
+                    f"after the file load, requested {edge_set.name}"
+                )
         if burst_count is not None:
             self.set_burst_count(burst_count)
         if burst_period is not None:
@@ -2981,7 +2998,10 @@ class _Sequence(_SdgNode):
         return float(self._q("TRIGger:DELAy"))
 
     def set_burst_count(self, n: int) -> int:
-        """Set the passes per trigger in run mode BURST."""
+        """Set the passes per trigger in run mode BURST, 1 to 65535; it clamps.
+
+        The instrument refuses this with -200 while the sequence runs (SDG-36).
+        """
         self._w(f"BURSt:COUNt {int(n)}")
         return self.get_burst_count()
 
@@ -2990,7 +3010,12 @@ class _Sequence(_SdgNode):
         return int(float(self._q("BURSt:COUNt")))
 
     def set_burst_period(self, seconds: float) -> float:
-        """Set the time between passes in run mode BURST, in seconds."""
+        """Set the time between pass starts in run mode BURST, in seconds.
+
+        The minimum is the pass time + 1 us; it clamps. Passes start every 1.0101
+        x this period, and the instrument needs about 13 us between passes. The
+        instrument refuses this with -200 while the sequence runs (SDG-36).
+        """
         self._w(f"BURSt:PERiod {_num(seconds)}")
         return self.get_burst_period()
 
@@ -3990,16 +4015,14 @@ class _Channel(_SdgNode):
         spans get different scales (SDG-24). The upload works over the raw
         socket as well as VXI-11 (SDG-04 withdrawn).
         """
-        values = [float(v) for v in samples]
+        values = np.asarray(samples, dtype=np.float64).ravel()
         if len(values) < 2:
             raise ValueError("samples: give at least 2 points")
         self._check_limit("set_waveform_arb", ampl, ampl_limit, load)
-        lo, hi = min(values), max(values)
+        lo, hi = float(values.min()), float(values.max())
         span = (hi - lo) or 1.0
-        data = b"".join(
-            struct.pack("<h", round((v - lo) / span * _ARB_CODE_SPAN + _ARB_CODE_LOW))
-            for v in values
-        )
+        codes = np.round((values - lo) / span * _ARB_CODE_SPAN + _ARB_CODE_LOW)
+        data = codes.astype("<i2").tobytes()
         head = (
             f"{self._c}:WVDT WVNM,{name},FRQ,{_num(freq)},AMP,{_num(ampl)},"
             f"OFST,{_num(offset)},PHASE,0,WAVEDATA,"
@@ -4924,7 +4947,11 @@ class _MultiChannel(_SdgNode):
         return self._sdg.ch1.get_waveform()
 
     def cmd_phase_sync(self) -> None:
-        """Align the phase of both channels now (PG p.24)."""
+        """Align the phase of both channels now (PG p.24).
+
+        This also copies the CH2 phase setting to CH1 (SDG-38): set a phase
+        offset after this call, never before.
+        """
         self.link.write_checked("G1:EQPHASE")
 
     def set_phase_locked_state(self, state: bool) -> bool:

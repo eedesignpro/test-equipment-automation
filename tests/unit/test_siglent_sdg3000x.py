@@ -15,6 +15,7 @@ import inspect
 import math
 import re
 
+import numpy as np
 import pytest
 import pyvisa as visa
 
@@ -1009,3 +1010,60 @@ def test_counter_totalizer_gate(sdg):
     assert sdg.counter.set_totalizer_gate(Gate.OFF) is Gate.OFF
     assert sdg.counter.meas_total() == 1234
     assert sdg.counter.set_state(False) is False
+
+
+# ---- sequence file load: trigger source (SDG-37) ---------------------------------------------
+
+
+def _file_route(monkeypatch, seq, fake, keep_file_value):
+    """Stand in for the file load: it sets the trigger source from the file (SDG-37)."""
+
+    def load(segments, mode, name, user):
+        fake.ch["C1"].awg["TRIGger:SOURce"] = "EXT"
+
+    monkeypatch.setattr(seq, "_load_file", load)
+    monkeypatch.setattr(seq, "get_segments", lambda: [])
+    monkeypatch.setattr(seq, "_compare", lambda segments, written: None)
+    if keep_file_value:
+        write = fake.write
+
+        def drop_after_load(cmd, **kwargs):
+            if "TRIGger:SOURce" in cmd and fake.ch["C1"].awg["TRIGger:SOURce"] == "EXT":
+                return len(cmd)
+            return write(cmd, **kwargs)
+
+        monkeypatch.setattr(fake, "write", drop_after_load)
+
+
+def test_sequence_file_load_sets_the_trigger_source_again(make_sdg, monkeypatch):
+    sdg, fake = make_sdg()
+    seq = sdg.ch1.sequence
+    _file_route(monkeypatch, seq, fake, keep_file_value=False)
+    segments = [Segment("Sine", length=1024), Segment("Square", length=1024)]
+    seq.set_segments(segments, sample_rate=1e6, run_mode="triggered", trigger_source="manual")
+    assert fake.ch["C1"].awg["TRIGger:SOURce"] == "MAN"
+
+
+def test_sequence_file_load_raises_if_the_trigger_source_stays_wrong(make_sdg, monkeypatch):
+    sdg, fake = make_sdg()
+    seq = sdg.ch1.sequence
+    _file_route(monkeypatch, seq, fake, keep_file_value=True)
+    segments = [Segment("Sine", length=1024), Segment("Square", length=1024)]
+    with pytest.raises(InstrumentError, match="after the file load"):
+        seq.set_segments(segments, sample_rate=1e6, run_mode="triggered", trigger_source="manual")
+
+
+def test_arb_codes_span_the_full_range(make_sdg, monkeypatch):
+    sdg, fake = make_sdg()
+    blocks = []
+    write_raw = fake.write_raw
+
+    def keep(data):
+        blocks.append(data)
+        return write_raw(data)
+
+    monkeypatch.setattr(fake, "write_raw", keep)
+    sdg.ch1.set_waveform_arb([0.0, 0.5, 1.0], 1e3, 1.0, ampl_limit=4.0, name="x")
+    block = next(b for b in blocks if b"WVDT WVNM,x" in b)
+    data = block.split(b"WAVEDATA,", 1)[1].rstrip(b"\n")
+    assert np.frombuffer(data, "<i2").tolist() == [-32767, 0, 32767]

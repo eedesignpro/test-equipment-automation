@@ -281,8 +281,8 @@ get_trigger_delay() -> 'float'                                          The trig
 get_trigger_edge() -> 'SequenceEdge'                                    The external trigger edge.
 get_trigger_source() -> 'SequenceTriggerSource'                         What triggers the sequence.
 get_trigger_timer() -> 'float'                                          The trigger timer period in seconds.
-set_burst_count(n: 'int') -> 'int'                                      Set the passes per trigger in run mode BURST.
-set_burst_period(seconds: 'float') -> 'float'                           Set the time between passes in run mode BURST, in seconds.
+set_burst_count(n: 'int') -> 'int'                                      Set the passes per trigger in run mode BURST, 1 to 65535; it clamps.
+set_burst_period(seconds: 'float') -> 'float'                           Set the time between pass starts in run mode BURST, in seconds.
 set_hold(hold: 'SequenceHold | str') -> 'SequenceHold'                  Choose the level after the sequence ends: MID, START, END, or USER.
 set_hold_user_level(volts: 'float') -> 'float'                          Hold ``volts`` after the sequence ends; selects the USER hold.
 set_interpolation(kind: 'Interpolation | str') -> 'Interpolation'       Choose the interpolation between points.
