@@ -1978,7 +1978,10 @@ class _Harmonics(_SdgNode):
 
     def get_type(self) -> HarmonicType:
         """Which orders may carry a level."""
-        return _member(self._raw()["HARMTYPE"], HarmonicType, "harmonic type")
+        found = self._raw()
+        if "HARMTYPE" not in found:  # MEAS 2026-11-05: the reply omits it while harmonics are off
+            raise InstrumentError(f"{self.name}: harmonics are off, so the type does not read")
+        return _member(found["HARMTYPE"], HarmonicType, "harmonic type")
 
     def set_level(
         self,

@@ -1067,3 +1067,10 @@ def test_arb_codes_span_the_full_range(make_sdg, monkeypatch):
     block = next(b for b in blocks if b"WVDT WVNM,x" in b)
     data = block.split(b"WAVEDATA,", 1)[1].rstrip(b"\n")
     assert np.frombuffer(data, "<i2").tolist() == [-32767, 0, 32767]
+
+
+def test_harmonic_type_while_off_names_the_cause(make_sdg, monkeypatch):
+    sdg, _ = make_sdg()
+    monkeypatch.setattr(sdg.ch1.harmonics, "_raw", lambda: {"HARMSTATE": "OFF"})
+    with pytest.raises(InstrumentError, match="harmonics are off"):
+        sdg.ch1.harmonics.get_type()
