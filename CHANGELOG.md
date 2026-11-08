@@ -3,6 +3,31 @@
 All notable changes to this project are documented in this file. Format
 loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+### Added
+- `Keysight_34401A`: driver for the 34401A digital multimeter on RS-232 (9600 baud, 8 data
+  bits, 2 stop bits, DTR/DSR handshake) or GPIB. Checked on hardware 2026-11-07 on DC volts
+  against a supply, 0 to 20 V: ranges, overload, integration time, buffer, statistics,
+  restore; the error queue stayed empty. Current, AC, resistance and frequency are not yet
+  checked on hardware.
+- `RohdeSchwarz_RTB2000.fft.set_range`: repeats span and centre until the range reads back,
+  then sets the RBW ratio (RTB-13).
+- `tools/api_sweep.py`: runs a driver's reads and write-backs against a real instrument.
+- `tools/quirks_md.py`, the generator that the quirk pages name.
+- Quirk records SDG-36, SDG-37 and SDG-38.
+
+### Changed
+- SDG3000X and RTB2000 rerun on hardware under the method names of the port, 2026-11-05.
+- `Siglent_SDG3000X.ch1.set_waveform_arb` packs samples with numpy.
+
+### Fixed
+- SDG3000X: `set_segments` sets the trigger source and edge again after a file load (SDG-37).
+- SDG3000X: sequence start and output on wait up to 60 s. With a 15 Mpoint sequence the
+  operation-complete query outlasted the 3 s default and the call raised a timeout.
+- RTB2000: the counter refuses a result near zero, which it reads after a mode change.
+- README: `pyvisa-py` needs `pyserial` for `ASRL` addresses.
+
 ## [0.4.0] - 2026-07-29
 
 Iterations 4, 5 and 6. This release turns a single-instrument project into a

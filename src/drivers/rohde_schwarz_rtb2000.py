@@ -16,9 +16,12 @@ protocols those options decode.
 Port note. This driver was ported from the original repository (commit
 8970360, ``rohde_schwarz/rtb2000.py``) onto ``common.Instrument`` and renamed
 to ``docs/driver-api-design.md``. Every bench fact cited below was observed in
-that repository under its old method names. Every public method here was
-renamed in the port, so each one is UNVERIFIED on hardware until the original
-bench checks are rerun under the new names. Quirk IDs (RTB-nn) refer to
+that repository under its old method names. A rerun under these names on
+2026-11-05, RTB2004 firmware 03.000: every ``get_`` with no required argument,
+the write-back of each ``set_`` that has a matching ``get_`` (tools/api_sweep.py),
+and signal checks of capture, measurements, voltmeter, counter, FFT, record
+length, zoom, setup files, screenshot and the built-in generator. Bus decode,
+logic, pattern, mask and history were read back only. Quirk IDs (RTB-nn) refer to
 ``docs/quirks/rtb2000.md``; "UM p.NNN" cites the R&S RTB2 user manual page;
 "MEAS" cites an original bench measurement.
 
@@ -2209,6 +2212,9 @@ class _Dvm(_RtbNode):
         return self._meas(source, VoltmeterType.AC_RMS)
 
 
+_COUNTER_MIN = 1e-30  # below any real frequency in Hz or period in s
+
+
 class _Counter(_RtbNode):
     """Trigger counter (UM p.422): frequency and period of a channel or the trigger source."""
 
@@ -2229,7 +2235,8 @@ class _Counter(_RtbNode):
         t0 = time.monotonic()
         while True:
             v = self._qf(query)
-            if 0 < abs(v) < _INVALID:
+            # MEAS 2026-11-05: right after a mode change the counter read 1.29e-217, not 0.
+            if _COUNTER_MIN < abs(v) < _INVALID:
                 return v
             if time.monotonic() - t0 > timeout:
                 raise InstrumentError(f"the counter has no valid result ({v})")
@@ -2527,6 +2534,10 @@ class _Search(_RtbNode):
         return self._set_bool("SEAR:STAT", state)
 
 
+_FFT_RANGE_ROUNDS = 8  # MEAS 2026-10-18: the range opens up within a few rounds
+_FFT_RATIO_POLL_S = 0.1
+
+
 class _Fft(_RtbNode):
     """The scope FFT (UM p.408-418).
 
@@ -2561,6 +2572,58 @@ class _Fft(_RtbNode):
             stop=self._qf("SPEC:FREQ:STOP?"),
             rbw=self._qf("SPEC:FREQ:BAND?"),
         )
+
+    def set_range(self, start: float, stop: float, *, rbw_ratio: int | None = None) -> FftSettings:
+        """Set the frequency range in Hz; returns the read-back with the RBW it gives.
+
+        The scope sets its timebase from the FFT range. Each write clamps to what
+        the present timebase allows and moves the timebase, so the range opens up
+        over a few rounds (MEAS 2026-10-18, RTB-13). A -222 inside a round is
+        expected; the read-back after the rounds decides. ``rbw_ratio`` is span /
+        RBW (1024 gives RBW 16.6 Hz on a 17 kHz span).
+        """
+        span, centre = float(stop - start), float(start + stop) / 2
+        tolerance = 1e-3 * span
+
+        def reached(got: FftSettings) -> bool:
+            return abs(got.start - start) <= tolerance and abs(got.stop - stop) <= tolerance
+
+        for _ in range(_FFT_RANGE_ROUNDS):
+            self.link.write(f"SPEC:FREQ:SPAN {_num(span)}")
+            self.link.write(f"SPEC:FREQ:CENT {_num(centre)}")
+            self.link.drain_errors()
+            got = self.get_settings()
+            if reached(got):
+                break
+        if rbw_ratio is not None:  # after the range: the rounds reset the RBW
+            self._w("SPEC:FREQ:BAND:RES:AUTO OFF")
+            # MEAS 2026-11-05: a ratio written at once after AUTO OFF can give -222; the
+            # same write holds some 100 ms later. The read-back decides.
+            for _ in range(_FFT_RANGE_ROUNDS):
+                self.link.write(f"SPEC:FREQ:BAND:RES:RAT {int(rbw_ratio)}")
+                self.link.drain_errors()
+                ratio = self._qf("SPEC:FREQ:BAND:RES:RAT?")
+                if abs(ratio - rbw_ratio) <= 0.02 * rbw_ratio:
+                    break
+                time.sleep(_FFT_RATIO_POLL_S)
+            else:
+                raise InstrumentError(f"{self.name}: RBW ratio reads {ratio:g}, requested {rbw_ratio}")
+            # MEAS 2026-11-05: a ratio write can move the range. Span and centre written
+            # again bring it back and keep the ratio.
+            for _ in range(_FFT_RANGE_ROUNDS):
+                got = self.get_settings()
+                if reached(got):
+                    break
+                self.link.write(f"SPEC:FREQ:SPAN {_num(span)}")
+                self.link.write(f"SPEC:FREQ:CENT {_num(centre)}")
+                self.link.drain_errors()
+                time.sleep(_FFT_RATIO_POLL_S)
+        if not reached(got):
+            raise InstrumentError(
+                f"{self.name}: FFT range reads {got.start:g}..{got.stop:g} Hz, "
+                f"requested {start:g}..{stop:g}"
+            )
+        return got
 
     def get_spectrum(self) -> tuple[np.ndarray, np.ndarray]:
         """Read the spectrum as (frequency in Hz, magnitude in the set scale)."""

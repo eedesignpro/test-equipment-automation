@@ -43,10 +43,11 @@ Other models in a family are in the class's model table but are not tested.
 | HP or Agilent 33120A function generator | `Keysight_33120A` | `drivers.keysight_33120a` | 33120A | 33120A |
 | Rigol DL3000 electronic loads | `Rigol_DL3000` | `drivers.rigol_dl3000` | DL30xx | DL3021A |
 | Siglent SDM4000A digital multimeters | `Siglent_SDM` | `drivers.siglent_sdm` | SDM4055A, SDM4065A | SDM4065A |
+| HP, Agilent or Keysight 34401A digital multimeter | `Keysight_34401A` | `drivers.keysight_34401a` | 34401A | 34401A (RS-232) |
 | OWON ODP DC power supplies | `Owon_ODP` | `drivers.owon_odp` | ODP series | ODP6033 |
 | Tektronix AFG31000 function generators | `Tektronix_AFG31000` | `drivers.tektronix_afg31000` | AFG31000 series | AFG31102 |
-| Siglent SDG3000X waveform generators | `Siglent_SDG3000X` | `drivers.siglent_sdg3000x` | SDG3082X, SDG3162X, SDG3202X | SDG3202X, under earlier method names |
-| Rohde & Schwarz RTB2000 oscilloscopes | `RohdeSchwarz_RTB2000` | `drivers.rohde_schwarz_rtb2000` | RTB2002, RTB2004 | RTB2004, under earlier method names |
+| Siglent SDG3000X waveform generators | `Siglent_SDG3000X` | `drivers.siglent_sdg3000x` | SDG3082X, SDG3162X, SDG3202X | SDG3202X |
+| Rohde & Schwarz RTB2000 oscilloscopes | `RohdeSchwarz_RTB2000` | `drivers.rohde_schwarz_rtb2000` | RTB2002, RTB2004 | RTB2004 |
 
 Tested platform: Windows 11, Python 3.14. Other platforms and Python versions
 are not tested.
@@ -59,14 +60,14 @@ Until the first release, install from a clone:
 git clone <this repository>
 cd test-equipment-automation
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install pyvisa-py
+.venv/Scripts/python.exe -m pip install pyvisa-py pyserial
 .venv/Scripts/python.exe -m pip install -e .
 ```
 
 On Linux or macOS, use `.venv/bin/python` in place of `.venv/Scripts/python.exe`.
 
 The install pulls in pyvisa, numpy, scipy and matplotlib.
-`pyvisa-py` is a VISA backend written in Python. If your computer already has
+`pyvisa-py` is a VISA backend written in Python. It needs `pyserial` for `ASRL` addresses. If your computer already has
 a vendor VISA library, such as Keysight IO Libraries or NI-VISA, pyvisa uses it
 and `pyvisa-py` is optional.
 
@@ -161,6 +162,7 @@ not include them. Get them from each vendor's website.
 | Agilent 33120A | 33120A User's Guide |
 | Rigol DL3000 | DL3000 Series Programming Guide |
 | Siglent SDM4000A | SDM4000A Remote Manual |
+| HP 34401A | 34401A User's Guide, chapter 4, Remote Interface Reference |
 | OWON ODP | ODP Series Power Supply Programming Manual |
 | Tektronix AFG31000 | AFG31000 Series Programmer Manual |
 | Siglent SDG3000X | SDG3000X Series Programming Guide |
