@@ -15,10 +15,11 @@ instrument, so a script that drives the scope pays nothing for the DMM.
 | Tektronix AFG31000 AFG | [`api-map/tektronix_afg31000.md`](api-map/tektronix_afg31000.md) | 100 | 4412 |
 | Rigol DL3000 e-load | [`api-map/rigol_dl3000.md`](api-map/rigol_dl3000.md) | 65 | 2309 |
 | Siglent SDM DMM | [`api-map/siglent_sdm.md`](api-map/siglent_sdm.md) | 137 | 4583 |
+| Keysight 34401A DMM | [`api-map/keysight_34401a.md`](api-map/keysight_34401a.md) | 61 | 2203 |
 | Owon ODP PSU | [`api-map/owon_odp.md`](api-map/owon_odp.md) | 32 | 1276 |
 | Siglent SDG3000X AWG | [`api-map/siglent_sdg3000x.md`](api-map/siglent_sdg3000x.md) | 374 | 13852 |
 | Rohde & Schwarz RTB2000 scope | [`api-map/rohde_schwarz_rtb2000.md`](api-map/rohde_schwarz_rtb2000.md) | 240 | 9591 |
-| **all 11** | | **2000** | **72396** |
+| **all 12** | | **2061** | **74599** |
 
 Naming rules and the reasoning behind them are in
 [`driver-api-design.md`](driver-api-design.md).

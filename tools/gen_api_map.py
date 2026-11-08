@@ -72,6 +72,7 @@ DRIVERS = [
     ),
     ("Rigol DL3000 e-load", "drivers.rigol_dl3000", "Rigol_DL3000", "TCPIP::0.0.0.0::INSTR"),
     ("Siglent SDM DMM", "drivers.siglent_sdm", "Siglent_SDM", "TCPIP::0.0.0.0::5025::SOCKET"),
+    ("Keysight 34401A DMM", "drivers.keysight_34401a", "Keysight_34401A", "ASRL1::INSTR"),
     ("Owon ODP PSU", "drivers.owon_odp", "Owon_ODP", "USB0::0x0000::0x0000::0::INSTR"),
     (
         "Siglent SDG3000X AWG",

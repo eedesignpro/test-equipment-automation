@@ -6,6 +6,11 @@ loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## Unreleased
 
 ### Added
+- `Keysight_34401A`: driver for the 34401A digital multimeter on RS-232 (9600 baud, 8 data
+  bits, 2 stop bits, DTR/DSR handshake) or GPIB. Checked on hardware 2026-11-07 on DC volts
+  against a supply, 0 to 20 V: ranges, overload, integration time, buffer, statistics,
+  restore; the error queue stayed empty. Current, AC, resistance and frequency are not yet
+  checked on hardware.
 - `RohdeSchwarz_RTB2000.fft.set_range`: repeats span and centre until the range reads back,
   then sets the RBW ratio (RTB-13).
 - `tools/api_sweep.py`: runs a driver's reads and write-backs against a real instrument.
